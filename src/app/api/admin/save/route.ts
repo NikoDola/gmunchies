@@ -1,50 +1,80 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+// ---------------- CONFIG ----------------
 const OWNER = "NikoDola";
 const REPO = "gmunchies";
 const FILE_PATH = "src/content/message.json";
+const GITHUB_API = "https://api.github.com";
 
-const schema = z.object({
+// ---------------- VALIDATION ----------------
+const MessageSchema = z.object({
   text: z.string().min(1).max(500),
 });
 
+// ---------------- HELPERS ----------------
+function unauthorized() {
+  return NextResponse.json(
+    { ok: false, error: "Unauthorized" },
+    { status: 401 }
+  );
+}
+
+function serverError(message = "Server error") {
+  return NextResponse.json(
+    { ok: false, error: message },
+    { status: 500 }
+  );
+}
+
+function checkAuth(req: Request) {
+  const secret = process.env.ADMIN_SECRET;
+  const header = req.headers.get("x-admin-secret");
+  return Boolean(secret && header === secret);
+}
+
+// ---------------- GET ----------------
+export async function GET(req: Request) {
+  if (!checkAuth(req)) return unauthorized();
+
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) return serverError("Missing GITHUB_TOKEN");
+
+  const res = await fetch(
+    `${GITHUB_API}/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/vnd.github+json",
+      },
+      cache: "no-store",
+    }
+  );
+
+  if (!res.ok) return serverError("Failed to fetch file");
+
+  const data = await res.json();
+
+  const decoded = JSON.parse(
+    Buffer.from(data.content, "base64").toString("utf-8")
+  );
+
+  return NextResponse.json({ ok: true, data: decoded });
+}
+
+// ---------------- POST ----------------
 export async function POST(req: Request) {
+  if (!checkAuth(req)) return unauthorized();
+
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) return serverError("Missing GITHUB_TOKEN");
+
   try {
-    const token = process.env.GITHUB_TOKEN;
-
-    if (!token) {
-      console.error("Missing GITHUB_TOKEN");
-
-      return NextResponse.json(
-        { ok: false, error: "Server misconfigured" },
-        { status: 500 }
-      );
-    }
-
     const body = await req.json();
-
-    const parsed = schema.safeParse(body);
-
-    if (!parsed.success) {
-      console.error("Validation failed:", parsed.error.flatten());
-
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "Validation failed",
-          details: parsed.error.flatten(),
-        },
-        { status: 400 }
-      );
-    }
-
-    // -----------------------------
-    // Fetch current file from GitHub
-    // -----------------------------
+    const parsed = MessageSchema.parse(body);
 
     const fileRes = await fetch(
-      `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`,
+      `${GITHUB_API}/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -54,30 +84,17 @@ export async function POST(req: Request) {
       }
     );
 
+    if (!fileRes.ok) return serverError("Failed to fetch file");
+
     const fileData = await fileRes.json();
+    if (!fileData.sha) return serverError("Missing SHA");
 
-    if (!fileRes.ok || !fileData.sha) {
-      console.error("GitHub get-file failed:", fileData);
-
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "Failed to fetch content file",
-        },
-        { status: 500 }
-      );
-    }
-
-    // -----------------------------
-    // Update file
-    // -----------------------------
-
-    const content = Buffer.from(
-      JSON.stringify({ text: parsed.data.text }, null, 2)
+    const encoded = Buffer.from(
+      JSON.stringify({ text: parsed.text }, null, 2)
     ).toString("base64");
 
     const updateRes = await fetch(
-      `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`,
+      `${GITHUB_API}/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`,
       {
         method: "PUT",
         headers: {
@@ -85,44 +102,20 @@ export async function POST(req: Request) {
           Accept: "application/vnd.github+json",
         },
         body: JSON.stringify({
-          message: "cms: update homepage text",
-          content,
+          message: "cms: update homepage message",
+          content: encoded,
           sha: fileData.sha,
         }),
       }
     );
 
-    const updateData = await updateRes.json();
+    if (!updateRes.ok) return serverError("Failed to update file");
 
-    if (!updateRes.ok) {
-      console.error("GitHub update failed:", updateData);
-
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "Failed to update GitHub file",
-        },
-        { status: 500 }
-      );
-    }
-
-    // -----------------------------
-    // Success
-    // -----------------------------
-
-    return NextResponse.json({
-      ok: true,
-      committed: true,
-    });
-  } catch (err) {
-    console.error("CMS route crashed:", err);
-
+    return NextResponse.json({ ok: true, committed: true });
+  } catch {
     return NextResponse.json(
-      {
-        ok: false,
-        error: "Unexpected server error",
-      },
-      { status: 500 }
+      { ok: false, error: "Invalid request" },
+      { status: 400 }
     );
   }
 }

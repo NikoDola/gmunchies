@@ -1,56 +1,55 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import data from "@/content/message.json"
 
 export default function AdminPage() {
   const [text, setText] = useState("");
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [update, setUpdate] = useState({})
 
+  useEffect(()=>{
+   function FetchingData(){
+      console.log(data)
+    }
+    FetchingData()
+  })
   async function save() {
     if (loading) return;
-
     setLoading(true);
     setStatus("saving...");
 
     try {
       const res = await fetch("/api/admin/save", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-secret": process.env.NEXT_PUBLIC_ADMIN_SECRET!,
+        },
         body: JSON.stringify({ text }),
       });
 
-      let json: unknown;
+      const json = await res.json();
 
-      try {
-        json = await res.json();
-      } catch {
-        throw new Error("Server returned invalid JSON");
+      function handleUpdate(){
+        const newData = {
+          
+        }
+        setUpdate((prev) => ({
+          newData,
+          ...prev
+        }))
       }
 
       if (!res.ok) {
-        const message =
-          typeof json === "object" &&
-          json !== null &&
-          "error" in json &&
-          typeof (json as { error: string }).error === "string"
-            ? (json as { error: string }).error
-            : "Save failed";
-
-        console.error("❌ Save failed:", json);
-
-        setStatus(`error: ${message}`);
+        setStatus(`error: ${json.error ?? "save failed"}`);
         return;
       }
 
-      setStatus("saved, redeploying...");
+      setStatus("saved & redploying, wait 5 to 10 minutes for changes");
     } catch (err) {
-      console.error("🔥 Request crashed:", err);
-
-      const message =
-        err instanceof Error ? err.message : "Unknown network error";
-
-      setStatus(`error: ${message}`);
+      setStatus("network error contact nikodola@gmail.com for more informations.");
     } finally {
       setLoading(false);
     }
@@ -58,10 +57,10 @@ export default function AdminPage() {
 
   return (
     <main>
-      <h2>Edit text</h2>
-
+      <h2>Admin CMS</h2>
       <input
         value={text}
+        placeholder={data.text}
         onChange={(e) => setText(e.target.value)}
         disabled={loading}
       />

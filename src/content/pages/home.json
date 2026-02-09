@@ -1,12 +1,13 @@
 [{
   "headline": "Your Trusted Vending Partner",
   "body": "We provide modern vending machines with full service included. Installation, maintenance, and product refills are all covered so your location stays stocked and running.",
-  "CTA": "*footer"
+  "CTA": "Require Services"
 },
 {
-  "Headline": "Services",
+  "headline": "Services",
   "Services": [
     {"name": "Vending Machines"}
+    
   ]
   
 }
