@@ -1,0 +1,76 @@
+.heroWrapper {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+  clip-path:polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0% 80%);
+  
+}
+
+.parallaxWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 120%;
+  transition: opacity 0.6s ease;
+    opacity: 0;
+  will-change: transform;
+}
+
+.parallaxWrapper.loaded {
+  opacity: 1;
+}
+
+.parallaxWrapper.loaded {
+  opacity: 1;
+}
+
+.heroImg {
+  object-fit: cover;
+}
+
+.CTA_Wrapper {
+  position: relative;
+  z-index: 5;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 6vw;
+  width: 100%;
+  color: white;
+  gap: 1rem;
+  h1, p{
+    text-align: center;
+    width: 50%;
+  }
+  animation: fadeAnm 1.2s ease forwards;
+}
+
+.scrollContent {
+  height: 200vh;
+}
+
+@keyframes fadeAnm {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1000px){
+  .heroWrapper{
+      clip-path:polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0% 90%);
+  }
+  .CTA_Wrapper{
+      h1, p{
+    text-align: center;
+    width: 90%;
+  }
+  }
+}
