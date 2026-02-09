@@ -4,20 +4,56 @@ import { useState } from "react";
 
 export default function AdminPage() {
   const [text, setText] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   async function save() {
+    if (loading) return;
+
+    setLoading(true);
     setStatus("saving...");
 
-    const res = await fetch("/api/admin/save", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text }),
-    });
+    try {
+      const res = await fetch("/api/admin/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
 
-    const json = await res.json();
+      let json: unknown;
 
-    setStatus(json.ok ? "saved, redeploying..." : "error");
+      try {
+        json = await res.json();
+      } catch {
+        throw new Error("Server returned invalid JSON");
+      }
+
+      if (!res.ok) {
+        const message =
+          typeof json === "object" &&
+          json !== null &&
+          "error" in json &&
+          typeof (json as { error: string }).error === "string"
+            ? (json as { error: string }).error
+            : "Save failed";
+
+        console.error("❌ Save failed:", json);
+
+        setStatus(`error: ${message}`);
+        return;
+      }
+
+      setStatus("saved, redeploying...");
+    } catch (err) {
+      console.error("🔥 Request crashed:", err);
+
+      const message =
+        err instanceof Error ? err.message : "Unknown network error";
+
+      setStatus(`error: ${message}`);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -27,11 +63,14 @@ export default function AdminPage() {
       <input
         value={text}
         onChange={(e) => setText(e.target.value)}
+        disabled={loading}
       />
 
-      <button onClick={save}>Save</button>
+      <button onClick={save} disabled={loading}>
+        {loading ? "Saving..." : "Save"}
+      </button>
 
-      <p>{status}</p>
+      {status && <p>{status}</p>}
     </main>
   );
 }
