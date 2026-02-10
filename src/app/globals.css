@@ -22,9 +22,17 @@
   --fw-regular: 400;
 
   /* Color */
+  --primary-light: #F16866;
   --primary-color: #b21f36;
-  --secondary-dark: #CB832A
-  --white-color: #ffffff /* === Spacing (match Tailwind p-*, m-*, gap-*) === */
+  --primary-dark: #8E1830;
+  --secondary: #FFCD05;
+  --secondary-dark: #CB832A;
+  --black: #232121;
+  --dark-gray: #90857B;
+  --light-tan: #FCE9D4;
+  --green-success: #4AA5A2;
+  --white-color: #ffffff
+  /* === Spacing (match Tailwind p-*, m-*, gap-*) === */
     --space-0: 0rem;
   --space-2: 0.25rem; /* 4px */
   --space-4: 0.5rem; /* 8px */
@@ -84,16 +92,19 @@ h1 {
   font-size: var(--h1-size);
   font-weight: var(--fw-bold);
   line-height: var(--lh-tight);
+  color: var(--black);
 }
 h2 {
   font-size: var(--h2-size);
   font-weight: var(--fw-bold);
   line-height: var(--lh-tight);
+  color: var(--black);
 }
 h3 {
   font-size: var(--h3-size);
   font-weight: var(--fw-semibold);
   line-height: var(--lh-heading);
+  color: var(--black);
 }
 h4 {
   font-size: var(--h4-size);
@@ -124,6 +135,7 @@ h6 {
   max-width: var(--layout-max-width);
   margin: var(--space-10) auto var(--space-25);
   padding-inline: var(--space-6);
+  margin-top: 6rem;
 }
 
 form {
@@ -168,6 +180,15 @@ input {
 .ctaButton:hover{
   background-color: var(--secondary-dark);
 }
+
+.view-more{
+  background-color: var(--primary-color);
+  padding: 0.5rem 1rem 0.5rem 1rem ;
+  color: white;
+  border-radius: 3rem;
+  cursor: pointer;
+}
+
 @keyframes shine{
   0%{
     left: -10%;

@@ -10,7 +10,6 @@ export default async function Home() {
   console.log(data)
   return (
     <section className="section-full">
-      <p>{data.text}</p>
      <Hero />
      <section>
       <Services/>

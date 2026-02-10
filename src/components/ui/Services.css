@@ -1,0 +1,13 @@
+.cardWrapper{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+  gap: 5rem;
+}
+
+.h2{
+
+  text-align: center;
+  margin-bottom: 4rem;
+}

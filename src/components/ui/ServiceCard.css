@@ -1,0 +1,12 @@
+.srvCardWrapper{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 45%;
+}
+
+.h3{
+  line-height: 35px;
+  margin-bottom: 1rem;
+}
+
