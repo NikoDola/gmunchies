@@ -3,6 +3,7 @@ import Services from "@/components/Services"
 import fs from "fs/promises"
 import path from "path";
 import Results from "@/components/Results";
+import Form from "@/components/ui/Form";
 
 export default async function Home() {
   const filePath = path.join(process.cwd(), "src/content/message.json")
@@ -14,6 +15,7 @@ export default async function Home() {
       <Hero />
       <Services/>
       <Results />
+      <Form />
     </main>
   );
 }

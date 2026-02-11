@@ -1,0 +1,57 @@
+.formSection{
+  background-color: rgb(243, 243, 243);
+
+}
+.formWrapper{
+  width: 50%;
+  margin: 0 auto;
+}
+.formButton{
+  background-color: var(--primary-color);
+  padding: 0.5rem;
+  color: white;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.oneInputWrapper{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.twoInputsWrapper{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (max-width: 1300px){
+  .formWrapper{
+    width: 100%;
+  }
+  .twoInputsWrapper{
+    flex-direction: column;
+  }
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  padding-right: 40px; /* space for arrow */
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center; /* 👈 move left by changing 15px */
+  background-size: 16px;
+}

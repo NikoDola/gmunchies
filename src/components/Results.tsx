@@ -10,7 +10,12 @@ import { GrHostMaintenance } from "react-icons/gr";
 export default function Counter() {
   return (
     <section className="section-full rsfWrapper">
-      <h2 className="rsHeadline">Results</h2>
+      <div className="headingWrapper">
+        <p className="beforeHeading">our progress</p>
+        <h2 className="h2">Results</h2>
+        <p className="afterHeading">Our numbers reflect consistent growth, trusted partnerships, and long term reliability.
+        From installations to ongoing service, we focus on delivering solutions that perform every day.</p>
+      </div>
 
       <div className="rsCardsWrapper">
         <ResultCard headline="Machine Sold" target={150} Icon={GiVendingMachine}/>

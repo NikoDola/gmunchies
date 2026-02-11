@@ -4,7 +4,11 @@ import ServiceCard from "./ui/ServiceCard";
 export default function Services() {
   return (
     <section className="section-regular">
-      <h2 className="h2">Services</h2>
+      <div className="headingWrapper">
+        <p className="beforeHeading">Modern Vending Solutions</p>
+        <h2 className="h2">Services</h2>
+        <p>From a single vending machine to a full refreshment program, we have solutions that fit.</p>
+      </div>
       <div className="cardWrapper">
         <ServiceCard
           img="/uploads/icon_snack-vending-machines.svg"
