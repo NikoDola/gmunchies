@@ -31,7 +31,7 @@
   --dark-gray: #90857B;
   --light-tan: #FCE9D4;
   --green-success: #4AA5A2;
-  --white-color: #ffffff
+  --white: #ffffff;
   /* === Spacing (match Tailwind p-*, m-*, gap-*) === */
     --space-0: 0rem;
   --space-2: 0.25rem; /* 4px */
@@ -181,12 +181,55 @@ input {
   background-color: var(--secondary-dark);
 }
 
-.view-more{
+/* .view-more{
   background-color: var(--primary-color);
   padding: 0.5rem 1rem 0.5rem 1rem ;
   color: white;
   border-radius: 3rem;
   cursor: pointer;
+} */
+.view-more{
+  position: relative;
+  cursor: pointer;
+  font-style: italic;
+  transition: 0.3s letter-spacing ;
+}
+.view-more:hover{
+  font-weight: 500;
+  letter-spacing: 0.2rem;
+}
+.view-more:hover::before{
+  width: 175%;
+}
+.view-more:hover::after{
+  width: 316%;
+}
+.view-more::before{
+  content: "";
+  display: block;
+  position: absolute;
+  width: 150%;
+  height: 100%;
+  left: -1rem;
+  bottom: -0.5rem;
+  border-left: 2px  solid rgb(246, 82, 82);
+  border-bottom: 2px solid red;
+  border-radius: 0 0 0 0.5rem;
+  transition: 0.3s width;
+}
+.view-more::after{
+  content: ">";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.5rem;
+  position: absolute;
+  display: block;
+  color: red;
+  width: 250%;
+  left: 0;
+  bottom: -0.32rem;
+  line-height: 0;
+  transition: 0.3s width;
 }
 
 @keyframes shine{

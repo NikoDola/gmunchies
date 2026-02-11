@@ -11,3 +11,11 @@
   text-align: center;
   margin-bottom: 4rem;
 }
+
+@media (max-width: 1000px){
+  .cardWrapper{
+    flex-direction: column;
+    max-width: fit-content;
+  }
+
+}

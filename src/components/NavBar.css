@@ -10,7 +10,7 @@
   align-items: center;
   z-index: 2;
   background-color: rgb(255, 255, 255, 0.8);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(4px);
 }
 
 .nav-top {
@@ -33,9 +33,34 @@
 }
 
 .navLink{
+  position: relative;
   font-size: 16px;
   font-weight: 400;
-  position: relative;
+  transition: 0.5s;
+  padding: 0.5rem;
+}
+.navLink:hover{
+  color: white;
+}
+
+
+.navLink:after{
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background-color: var(--primary-color);
+  transition: 0.5s;
+  z-index: -1;
+  left: 0;
+  
+
+}
+.navLink:hover::after{
+  width: 100%;
+  border: solid var(--black) 1px;
 }
 
 .burger {

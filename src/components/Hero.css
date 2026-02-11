@@ -36,17 +36,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-left: 6vw;
   width: 100%;
   color: white;
   gap: 1rem;
   h1, p{
+    color: wite;
     text-align: center;
     width: 50%;
   }
   animation: fadeAnm 1.2s ease forwards;
+    
 }
-
+.heroHeading{
+  color: white;
+  text-align: center;
+}
 .scrollContent {
   height: 200vh;
 }

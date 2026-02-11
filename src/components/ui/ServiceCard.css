@@ -10,3 +10,14 @@
   margin-bottom: 1rem;
 }
 
+@media (max-width: 1000px){
+  .srvCardWrapper{
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .srvImg{
+    width: 150px;
+    
+  }
+}

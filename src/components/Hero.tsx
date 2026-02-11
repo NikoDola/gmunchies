@@ -25,7 +25,7 @@ useEffect(() => {
 
 
   return (
-    <div className="heroWrapper">
+    <section className="section-full heroWrapper">
       <div
         ref={imgRef}
         className={`parallaxWrapper ${isLoaded ? "loaded" : ""}`}
@@ -54,6 +54,6 @@ useEffect(() => {
       </div>
 
       <div className="scrollContent"></div>
-    </div>
+    </section>
   );
 }
