@@ -199,16 +199,16 @@ input {
   letter-spacing: 0.2rem;
 }
 .view-more:hover::before{
-  width: 175%;
+  width: 100%;
 }
 .view-more:hover::after{
-  width: 316%;
+  width: 35%;
 }
 .view-more::before{
   content: "";
   display: block;
   position: absolute;
-  width: 150%;
+  width: 100%;
   height: 100%;
   left: -1rem;
   bottom: -0.5rem;
@@ -225,8 +225,8 @@ input {
   position: absolute;
   display: block;
   color: red;
-  width: 250%;
-  left: 0;
+  width: 0%;
+  left: 65%;
   bottom: -0.32rem;
   line-height: 0;
   transition: 0.3s width;

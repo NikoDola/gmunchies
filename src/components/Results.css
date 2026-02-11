@@ -5,15 +5,18 @@
 }
 .rsCardsWrapper{
   display: flex;
-  justify-content: center;
-  gap: 3rem;
+  justify-content: space-between;
+  width: var(--layout-max-width);
+  margin: 0 auto;
+  gap: 2rem;
 }
 
 @media (max-width: 1400px){
   .rsCardsWrapper{
     flex-direction: row;
     flex-wrap: wrap;
-
+    justify-content: center;
+    width: 100%;
 }
 }
 
