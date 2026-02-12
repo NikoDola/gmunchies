@@ -41,7 +41,7 @@ export default function Navbar() {
           aria-label="Toggle menu"
           aria-expanded={open}
         >
-          ☰
+          {open ? "✕" : "☰"}
         </button>
       </div>
 

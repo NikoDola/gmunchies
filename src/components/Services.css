@@ -1,16 +1,13 @@
 .cardWrapper{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 100%;
-  gap: 5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-16);
+  width: 100%;
 }
 
-
-@media (max-width: 1000px){
+@media (max-width: 768px){
   .cardWrapper{
-    flex-direction: column;
-    max-width: fit-content;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
   }
-
 }
