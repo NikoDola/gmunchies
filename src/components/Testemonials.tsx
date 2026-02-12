@@ -9,15 +9,16 @@ export default function Testimonials() {
   return (
     <section className="section-full testimonialSection">
       <div className="testomonialWrapper">
-        <div className="headingWrapper">
-          <p className="beforeHeading">Our Happy clients</p>
-          <h2 className="h2">Testimonials</h2>
-          <p className="afterHeading">
-            See what businesses say about working with us and how our vending
-            solutions make a difference in their locations.
-          </p>
+        <div className="section-regular">
+          <div className="headingWrapper">
+            <p className="beforeHeading">Our Happy clients</p>
+            <h2 className="h2">Testimonials</h2>
+            <p className="afterHeading">
+              See what businesses say about working with us and how our vending
+              solutions make a difference in their locations.
+            </p>
+          </div>
         </div>
-
         <div className="testimonialSlider">
           <div className="testimonialTrack">
             {[...cards, ...cards].map((item, index) => (

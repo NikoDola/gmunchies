@@ -5,7 +5,11 @@
 
 /* Remove side padding so cards can slide out */
 .testomonialWrapper {
-  padding: 8rem 0;
+  width: 100%;
+}
+
+.testomonialWrapper .section-regular {
+  margin-bottom: 0;
 }
 
 /* Slider container */
@@ -13,7 +17,7 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  margin-top: 4rem;
+  margin-top: var(--space-12);
 }
 
 /* Moving track */

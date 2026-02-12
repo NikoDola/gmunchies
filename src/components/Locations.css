@@ -1,5 +1,4 @@
 .locationSection {
-  padding: var(--space-16) 0;
   background-color: rgb(244, 244, 244);
   z-index: 3;
 }
@@ -10,14 +9,8 @@
   gap: var(--space-12);
 }
 
-.headingWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding-top: 4rem;
-  margin-bottom: 4rem;
-  text-align: center;
+.locationContainer .headingWrapper {
+  margin-bottom: var(--space-12);
 }
 
 .locationGrid {
@@ -68,9 +61,5 @@
   .locationGrid .centerCard {
     grid-column: 1;
     max-width: 100%;
-  }
-  
-  .locationSection {
-    padding: var(--space-12) 0;
   }
 }

@@ -2,12 +2,13 @@ import "./Form.css";
 export default function Form() {
   return (
     <div className="section-full formSection">
-      <div className="headingWrapper">
-        <p className="beforeHeading">get startet</p>
-        <h2 className="h2">Request Service Today</h2>
-        <p className="afterHeading">Fill out the form below and we'll get back to you within 24 hours.</p>
-      </div>
-      <form className="formWrapper"> 
+      <div className="section-regular">
+        <div className="headingWrapper">
+          <p className="beforeHeading">get startet</p>
+          <h2 className="h2">Request Service Today</h2>
+          <p className="afterHeading">Fill out the form below and we'll get back to you within 24 hours.</p>
+        </div>
+        <form className="formWrapper"> 
         <div className="twoInputsWrapper">
           <div className="oneInputWrapper">
             <label>Your Name</label>
@@ -58,9 +59,10 @@ export default function Form() {
 
         <label>Tell us about your needs</label>
         <textarea name="description" placeholder="How many eomplyees or residents? Any specific requirements?"/>
-        <button className="formButton">Request a Quote</button>
-        <label className="text-center text-gray-500">No obligation. We'll reach out to discuss your needs.</label>
-      </form>
+          <button className="formButton">Request a Quote</button>
+          <label className="text-center text-gray-500">No obligation. We'll reach out to discuss your needs.</label>
+        </form>
+      </div>
     </div>
   );
 }

@@ -11,21 +11,19 @@ export default function Counter() {
   return (
     <section className="section-full rsfWrapper">
       <div className="section-regular">
-        
-      </div>
-      <div className="headingWrapper">
+        <div className="headingWrapper">
         <p className="beforeHeading">our progress</p>
         <h2 className="h2">Results</h2>
         <p className="afterHeading">Our numbers reflect consistent growth, trusted partnerships, and long term reliability.
         From installations to ongoing service, we focus on delivering solutions that perform every day.</p>
       </div>
 
-      <div className="rsCardsWrapper">
-        <ResultCard headline="Machine Sold" target={150} Icon={GiVendingMachine}/>
-        <ResultCard headline="Happy Clients" target={45} Icon={BiUser}/>
-        <ResultCard headline="Locations" target={150} Icon={GoLocation}/>
-        <ResultCard headline="Maintenance" target={14000} Icon={GrHostMaintenance}/>
-      
+        <div className="rsCardsWrapper">
+          <ResultCard headline="Machine Sold" target={150} Icon={GiVendingMachine}/>
+          <ResultCard headline="Happy Clients" target={45} Icon={BiUser}/>
+          <ResultCard headline="Locations" target={150} Icon={GoLocation}/>
+          <ResultCard headline="Maintenance" target={14000} Icon={GrHostMaintenance}/>
+        </div>
       </div>
     </section>
   );

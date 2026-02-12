@@ -42,6 +42,9 @@
   --space-12: 2rem; /* 32px */
   --space-16: 3rem; /* 48px */
   --space-25: 11rem; /* 176px */
+  
+  /* Section Padding */
+  --section-padding-y: var(--space-16); /* 48px top and bottom */
 }
 
 *,
@@ -59,6 +62,7 @@
     --h4-size: 20px;
     --h5-size: 18px;
     --h6-size: 16px;
+    --section-padding-y: var(--space-12); /* 32px on mobile */
   }
 }
 
@@ -128,14 +132,17 @@ h6 {
 
 .section-full {
   width: 100%;
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
 }
 
 .section-regular {
   width: 100%;
   max-width: var(--layout-max-width);
-  margin: var(--space-10) auto var(--space-25);
+  margin: 0 auto;
   padding-inline: var(--space-6);
-  margin-top: 6rem;
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
 }
 
 form {
@@ -275,8 +282,7 @@ label, ::placeholder, select{
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding-top: 4rem;
-  margin-bottom: 4rem;
+  margin-bottom: var(--space-12);
   text-align: center;
 }
 

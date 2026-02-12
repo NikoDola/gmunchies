@@ -43,7 +43,7 @@ const locations = [
 export default function Locations() {
   return (
     <section className="section-full locationSection">
-      <div className=" locationContainer">
+      <div className="section-regular locationContainer">
         <div className="headingWrapper">
           <p className="beforeHeading">where we serve</p>
           <h2 className="h2">Locations</h2>
