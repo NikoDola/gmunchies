@@ -43,7 +43,7 @@ const locations = [
 export default function Locations() {
   return (
     <section className="section-full locationSection">
-      <div className="section-regular locationContainer">
+      <div className=" locationContainer">
         <div className="headingWrapper">
           <p className="beforeHeading">where we serve</p>
           <h2 className="h2">Locations</h2>
@@ -59,7 +59,6 @@ export default function Locations() {
               name={location.name}
               Icon={location.Icon}
               description={location.description}
-              className={location.name === "Other" ? "centerCard" : ""}
             />
           ))}
         </div>

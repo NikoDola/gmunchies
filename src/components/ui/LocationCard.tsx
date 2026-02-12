@@ -14,7 +14,7 @@ export default function LocationCard({ name, Icon, description, className }: Loc
       <div className="locationCardIcon">
         <Icon className="locationIcon" />
       </div>
-      <h4 className="locationCardTitle">{name}</h4>
+      <h3 className="locationCardTitle">{name}</h3>
       {description && <p className="locationCardDescription">{description}</p>}
     </div>
   );

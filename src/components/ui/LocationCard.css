@@ -55,7 +55,8 @@
 
 .locationCardDescription {
   font-size: var(--paragraph-small);
-  color: var(--dark-gray);
+  color: var(--black);
+  opacity: 0.7;
   margin: 0;
   line-height: var(--lh-paragraph);
 }

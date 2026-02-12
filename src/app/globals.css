@@ -298,23 +298,17 @@ label, ::placeholder, select{
 }
 
 
-.headingWrapperLeft{
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  gap: 1rem;
-  padding-top: 4rem;
-  margin-bottom: 4rem;
-  text-align: left;
-}
 
 
-.h2Left{
-  text-align: left;
-  font-size: var(--h1-size);
-}
+
 
 @media (max-width: 1000px){
+  .headingWrapper{
+   
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
   .afterHeading{
     width: 100%;
   }
