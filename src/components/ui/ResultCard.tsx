@@ -63,7 +63,7 @@ export default function Counter({ headline, target, Icon }: ResultCardProps) {
   return (
     <div className="rsCard">
       <Icon className="react-icon" size={140} />
-      <h3 className="cardHeadline">{headline}</h3>
+      <p >{headline}</p>
       <span ref={countRef} onMouseEnter={startCounting} className="counter">
         {value}
       </span>

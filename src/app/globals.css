@@ -288,11 +288,14 @@ label, ::placeholder, select{
   background-color: var(--secondary);
   padding: 0.5rem 1rem 0.5rem 1rem;
   border-radius: 2rem;
+  font-size: var(--paragraph-small);
 }
 .afterHeading{
   width: 40%;
 }
 
 @media (max-width: 1000px){
-  
+  .afterHeading{
+    width: 100%;
+  }
 }

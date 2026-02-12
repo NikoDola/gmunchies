@@ -30,7 +30,7 @@
 
 @media (max-width: 1300px){
   .formWrapper{
-    width: 100%;
+    width: 80%;
   }
   .twoInputsWrapper{
     flex-direction: column;

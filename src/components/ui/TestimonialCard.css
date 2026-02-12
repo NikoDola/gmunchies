@@ -1,0 +1,21 @@
+.TestimonialCardWrapper{
+  min-width: 400px;
+  min-height: 150px;
+  padding: 1rem;
+  background-color: rgb(235, 235, 235);
+  border: solid rgb(204, 204, 204) 1px;
+  border-radius: 1rem;
+}
+
+.testimonialDescription{
+  font-style: italic;
+}
+.clientName{
+  font-weight: 600;
+}
+.industrial{
+  background-color: var(--secondary);
+  border-radius: 1.5rem;
+  padding: 0.5rem;
+  font-size: var(--paragraph-small);
+}

@@ -1,0 +1,78 @@
+/* Section background (IMPORTANT for fade color match) */
+.testimonialSection {
+  background-color: #f5f5f5; /* change if your section uses another color */
+}
+
+/* Remove side padding so cards can slide out */
+.testomonialWrapper {
+  padding: 8rem 0;
+}
+
+/* Slider container */
+.testimonialSlider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 4rem;
+}
+
+/* Moving track */
+.testimonialTrack {
+  display: flex;
+  gap: 8rem;
+  width: fit-content;
+  animation: scrollTestimonials 50s linear infinite;
+}
+
+/* Each card wrapper */
+.testimonialItem {
+  flex: 0 0 auto;
+  width: 320px; /* adjust if needed */
+}
+
+/* Infinite animation */
+@keyframes scrollTestimonials {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on hover */
+.testimonialSlider:hover .testimonialTrack {
+  animation-play-state: paused;
+}
+
+/* LEFT FADE */
+.testimonialSlider::before,
+.testimonialSlider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Left gradient */
+.testimonialSlider::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #f5f5f5 0%,
+    rgba(245, 245, 245, 0) 100%
+  );
+}
+
+/* Right gradient */
+.testimonialSlider::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    #f5f5f5 0%,
+    rgba(245, 245, 245, 0) 100%
+  );
+}
