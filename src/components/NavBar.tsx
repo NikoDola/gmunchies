@@ -20,6 +20,37 @@ export default function Navbar() {
     };
   }, [open]);
 
+  const scrollToForm = () => {
+    setOpen(false); // Close menu when clicking
+    const formElement = document.getElementById("request-services-form");
+    if (!formElement) return;
+
+    const startPosition = window.pageYOffset;
+    const targetPosition = formElement.getBoundingClientRect().top + startPosition - 80; // 80px offset for navbar
+    const distance = targetPosition - startPosition;
+    const duration = 800; // 800ms
+    let start: number | null = null;
+
+    const easeInOutCubic = (t: number): number => {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
+
+    const animation = (currentTime: number) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
+
+      window.scrollTo(0, startPosition + distance * ease);
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
+
   return (
     <header className="nav">
       <div className="nav-top">
@@ -55,10 +86,8 @@ export default function Navbar() {
         <Link className="navLink" href="/services" onClick={() => setOpen(false)}>
           Services
         </Link>
-        <Link className="navLink" href="/contact" onClick={() => setOpen(false)}>
-          Contact
-        </Link>
-        <button className="ctaButton">request services</button>
+   
+        <button className="ctaButton" onClick={scrollToForm}>request services</button>
       </nav>
     </header>
   );

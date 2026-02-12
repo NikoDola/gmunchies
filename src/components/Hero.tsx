@@ -8,19 +8,49 @@ export default function Hero() {
   const [isLoaded, setIsLoaded] = useState(false);
   const imgRef = useRef<HTMLDivElement | null>(null);
 
-useEffect(() => {
-  if (!isLoaded) return;
+  useEffect(() => {
+    if (!isLoaded) return;
 
-  const handleScroll = () => {
-    if (!imgRef.current) return;
+    const handleScroll = () => {
+      if (!imgRef.current) return;
 
-    const scrollY = window.scrollY;
-    imgRef.current.style.transform = `translateY(${scrollY * 0.55}px)`;
+      const scrollY = window.scrollY;
+      imgRef.current.style.transform = `translateY(${scrollY * 0.55}px)`;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isLoaded]);
+
+  const scrollToForm = () => {
+    const formElement = document.getElementById("request-services-form");
+    if (!formElement) return;
+
+    const startPosition = window.pageYOffset;
+    const targetPosition = formElement.getBoundingClientRect().top + startPosition - 80; // 80px offset for navbar
+    const distance = targetPosition - startPosition;
+    const duration = 800; // 800ms
+    let start: number | null = null;
+
+    const easeInOutCubic = (t: number): number => {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
+
+    const animation = (currentTime: number) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
+
+      window.scrollTo(0, startPosition + distance * ease);
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
   };
-
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, [isLoaded]);
 
 
 
@@ -50,7 +80,7 @@ useEffect(() => {
           spaces, handling installation, restocking, and support so everything
           runs smoothly. Quality products, fast service, zero hassle.
         </p>
-        <button className="ctaButton text-black">request services</button>
+        <button className="ctaButton text-black" onClick={scrollToForm}>request services</button>
       </div>
 
       <div className="scrollContent"></div>
