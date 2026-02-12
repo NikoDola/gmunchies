@@ -8,7 +8,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: max-content;
+  min-width: 300px;
+
   
 }
 .counter {
@@ -22,6 +23,9 @@
 }
 
 @media (max-width: 1000px){
+  .rsCard{
+     min-width: 120px;
+  }
     .counter{
     font-size: 2rem;
   }

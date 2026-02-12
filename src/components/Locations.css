@@ -1,0 +1,76 @@
+.locationSection {
+  padding: var(--space-16) 0;
+  background-color: rgb(244, 244, 244);
+  z-index: 3;
+}
+
+.locationContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.headingWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 4rem;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.locationGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-10);
+  width: 100%;
+}
+
+.locationGrid .centerCard {
+  grid-column: 2;
+}
+
+@media (max-width: 1200px) {
+  .locationGrid .centerCard {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: calc(50% - var(--space-8));
+  }
+}
+
+@media (max-width: 1200px) {
+  .locationGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 1000px) {
+  .locationGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+
+  .locationGrid .centerCard {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: calc(50% - var(--space-8));
+  }
+}
+
+@media (max-width: 768px) {
+  .locationGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .locationGrid .centerCard {
+    grid-column: 1;
+    max-width: 100%;
+  }
+  
+  .locationSection {
+    padding: var(--space-12) 0;
+  }
+}

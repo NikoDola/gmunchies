@@ -10,6 +10,9 @@ import { GrHostMaintenance } from "react-icons/gr";
 export default function Counter() {
   return (
     <section className="section-full rsfWrapper">
+      <div className="section-regular">
+        
+      </div>
       <div className="headingWrapper">
         <p className="beforeHeading">our progress</p>
         <h2 className="h2">Results</h2>

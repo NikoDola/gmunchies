@@ -1,0 +1,81 @@
+.locationCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-12);
+  background-color: var(--white);
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  gap: var(--space-6);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.locationCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.locationCardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background-color: var(--light-tan);
+  border-radius: 50%;
+  margin-bottom: var(--space-4);
+  transition: all 0.3s ease;
+}
+
+.locationCard:hover .locationCardIcon {
+  background-color: var(--primary-color);
+}
+
+.locationIcon {
+  color: var(--primary-color);
+  width: 40px;
+  height: 40px;
+  transition: color 0.3s ease;
+}
+
+.locationCard:hover .locationIcon {
+  color: var(--white);
+}
+
+.locationCardTitle {
+  font-size: var(--h5-size);
+  font-weight: var(--fw-semibold);
+  color: var(--black);
+  margin: 0;
+  line-height: var(--lh-heading);
+}
+
+.locationCardDescription {
+  font-size: var(--paragraph-small);
+  color: var(--dark-gray);
+  margin: 0;
+  line-height: var(--lh-paragraph);
+}
+
+@media (max-width: 768px) {
+  .locationCard {
+    padding: var(--space-8);
+  }
+
+  .locationCardIcon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .locationIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .locationCardTitle {
+    font-size: var(--h6-size);
+  }
+}

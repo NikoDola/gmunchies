@@ -7,11 +7,12 @@
   justify-content: space-between;
   width: var(--layout-max-width);
   margin: 0 auto;
-  gap: 2rem;
+
 }
 
 @media (max-width: 1400px){
   .rsCardsWrapper{
+    gap: 2rem;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;

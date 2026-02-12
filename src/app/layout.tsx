@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from 'next/font/google';
 import "./globals.css";
 import Navbar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 
 // Configure Inter for Body
@@ -36,6 +37,7 @@ export default function RootLayout({
       >
           <Navbar/>
         {children}
+        <Footer/>
       </body>
     </html>
   );

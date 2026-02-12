@@ -5,6 +5,7 @@ import path from "path";
 import Results from "@/components/Results";
 import Form from "@/components/ui/Form";
 import Testomonials from "@/components/Testemonials";
+import Locations from "@/components/Locations";
 
 export default async function Home() {
   const filePath = path.join(process.cwd(), "src/content/message.json")
@@ -15,6 +16,7 @@ export default async function Home() {
     <main>
       <Hero />
       <Services/>
+      <Locations />
       <Results />
       <Testomonials />
       <Form />

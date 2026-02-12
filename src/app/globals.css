@@ -279,6 +279,8 @@ label, ::placeholder, select{
   margin-bottom: 4rem;
   text-align: center;
 }
+
+
 .h2{
   font-size: var(--h1-size);
   text-align: center;
@@ -289,9 +291,27 @@ label, ::placeholder, select{
   padding: 0.5rem 1rem 0.5rem 1rem;
   border-radius: 2rem;
   font-size: var(--paragraph-small);
+  width: max-content;
 }
 .afterHeading{
   width: 40%;
+}
+
+
+.headingWrapperLeft{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 1rem;
+  padding-top: 4rem;
+  margin-bottom: 4rem;
+  text-align: left;
+}
+
+
+.h2Left{
+  text-align: left;
+  font-size: var(--h1-size);
 }
 
 @media (max-width: 1000px){

@@ -1,0 +1,30 @@
+.locationSection {
+  padding: var(--space-16) 0;
+  background-color: var(--white);
+}
+
+.locationGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-10);
+  width: 100%;
+  margin-top: var(--space-12);
+}
+
+@media (max-width: 1000px) {
+  .locationGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .locationGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  
+  .locationSection {
+    padding: var(--space-12) 0;
+  }
+}
