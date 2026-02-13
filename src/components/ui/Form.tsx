@@ -70,7 +70,7 @@ export default function Form({ intro, services, locations }: FormProps) {
 
         <label>Tell us about your needs</label>
         <textarea name="description" placeholder="How many eomplyees or residents? Any specific requirements?"/>
-          <button className="formButton">Request a Quote</button>
+          <button className="formButton">Request Service</button>
           <label className="text-center text-gray-500">No obligation. We'll reach out to discuss your needs.</label>
         </form>
       </div>
