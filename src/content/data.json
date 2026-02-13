@@ -1,0 +1,435 @@
+{
+  "navbar": {
+    "logoSrc": "/branding/logo.svg",
+    "logoHref": "/",
+    "links": [
+      { "label": "Home", "href": "/" },
+      { "label": "Services", "href": "/services" },
+      { "label": "Locations", "href": "/locations" }
+    ],
+    "ctaLabel": "Request Service"
+  },
+  "home": {
+    "hero": {
+      "headline": "Your Trusted Vending Partner",
+      "body": "We deliver smart, reliable vending solutions for offices and public spaces, handling installation, restocking, and support so everything runs smoothly. Quality products, fast service, zero hassle.",
+      "ctaLabel": "Request Service",
+      "imageSrc": "/uploads/hero.webp"
+    },
+    "servicesIntro": {
+      "eyebrow": "Modern Vending Solutions",
+      "heading": "Services",
+      "body": "From a single vending machine to a full refreshment program, we have solutions that fit."
+    },
+    "locationsIntro": {
+      "eyebrow": "Where we serve",
+      "heading": "Locations",
+      "body": "We provide vending solutions for various locations. Find the perfect fit for your space."
+    },
+    "testimonialsIntro": {
+      "eyebrow": "Our Happy clients",
+      "heading": "Testimonials",
+      "body": "See what businesses say about working with us and how our vending solutions make a difference in their locations."
+    },
+    "formIntro": {
+      "eyebrow": "Get started",
+      "heading": "Request Service Today",
+      "body": "Fill out the form below and we'll get back to you within 24 hours."
+    }
+  },
+  "services": [
+    {
+      "slug": "snack-vending-machine",
+      "display": true,
+      "iconSrc": "/uploads/icon_snack-vending-machines.svg",
+      "title": "Snack Vending Machine",
+      "excerpt": "Modern snack machines with top brands and smart inventory support. Clean look, reliable performance, easy.",
+      "heroImageSrc": "/uploads/snack-vending.avif",
+      "blocks": [
+        {
+          "layout": "left",
+          "eyebrow": "modern solutions",
+          "heading": "Snacks your team will love",
+          "body": "Fresh selection, smart inventory support, and reliable machines that look great in your space.",
+          "imageSrc": "/uploads/hero.webp"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "product mix",
+          "heading": "A lineup that matches your team",
+          "body": "We stock best sellers and can add better-for-you options based on your preferences and usage trends.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "center",
+          "eyebrow": "service included",
+          "heading": "We handle everything end-to-end",
+          "body": "Installation, restocking, and maintenance are included—so you get the benefit without the hassle.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "drinks-vending-machine",
+      "display": true,
+      "iconSrc": "/uploads/icon_drink-vending-machines.svg",
+      "title": "Drinks Vending Machine",
+      "excerpt": "Cold beverages, energy drinks, and bottled water with fast cooling and smooth dispensing.",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "right",
+          "eyebrow": "refreshments",
+          "heading": "Always cold, always stocked",
+          "body": "We keep popular drinks available with consistent service and fast response when needed.",
+          "imageSrc": "/uploads/hero.webp"
+        },
+        {
+          "layout": "left",
+          "eyebrow": "variety",
+          "heading": "Water, energy, and favorites",
+          "body": "Bottled water, sodas, energy drinks, and more—optimized for your location and traffic patterns.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "center",
+          "eyebrow": "cashless ready",
+          "heading": "Tap-to-pay for faster checkout",
+          "body": "Contactless payments help increase usage and reduce the need for cash handling.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "combo-vending-machine",
+      "display": true,
+      "iconSrc": "/uploads/icon_combo-vending-machines.svg",
+      "title": "Combo Vending Machine",
+      "excerpt": "Snacks + drinks in one machine. Perfect for smaller spaces that still need variety.",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "center",
+          "eyebrow": "all-in-one",
+          "heading": "More variety in less space",
+          "body": "One machine, two categories, easy to maintain and perfect for smaller locations.",
+          "imageSrc": "/uploads/hero.webp"
+        },
+        {
+          "layout": "left",
+          "eyebrow": "ideal fit",
+          "heading": "Perfect for compact areas",
+          "body": "Get snack and drink choices without needing multiple machines—great for offices, gyms, and smaller breakrooms.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "managed service",
+          "heading": "Stocking and maintenance included",
+          "body": "We keep the machine filled and running, so your team gets consistent access to what they want.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "cashless-payments",
+      "display": true,
+      "iconSrc": "/uploads/icon_cashless-payments.svg",
+      "title": "Cashless Payment",
+      "excerpt": "Apple Pay, Google Pay, tap-to-pay cards, and mobile wallets. Fast and simple.",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "left",
+          "eyebrow": "payments",
+          "heading": "Tap-to-pay ready",
+          "body": "Modern payment options increase usage and make checkout effortless.",
+          "imageSrc": "/uploads/hero.webp"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "more conversions",
+          "heading": "Fewer missed sales",
+          "body": "Customers buy more when checkout is simple. Cashless options mean fewer walkaways and more convenience.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "center",
+          "eyebrow": "simple setup",
+          "heading": "Installed and configured for you",
+          "body": "We’ll set up readers and make sure everything works smoothly from day one.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "installation-setup",
+      "display": true,
+      "iconSrc": "/uploads/icon_instalation.svg",
+      "title": "Machine Installation & Setup",
+      "excerpt": "Delivery, placement, and setup handled from start to finish.",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "right",
+          "eyebrow": "start fast",
+          "heading": "Installed the right way",
+          "body": "We handle logistics, placement, and setup so your machines are ready to use immediately.",
+          "imageSrc": "/uploads/hero.webp"
+        },
+        {
+          "layout": "left",
+          "eyebrow": "planning",
+          "heading": "Placement that drives usage",
+          "body": "We recommend the best location for visibility and access, helping maximize convenience and sales.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "center",
+          "eyebrow": "no disruption",
+          "heading": "Fast install, minimal downtime",
+          "body": "We coordinate with your staff so installation is quick and doesn’t interrupt operations.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "maintenance-support",
+      "display": true,
+      "iconSrc": "/uploads/icon_maintenance.svg",
+      "title": "Maintenance & Support",
+      "excerpt": "Regular service, refills, and technical support so machines always stay ready.",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "center",
+          "eyebrow": "reliability",
+          "heading": "We keep everything running",
+          "body": "Preventive maintenance and quick support keep downtime near zero.",
+          "imageSrc": "/uploads/hero.webp"
+        },
+        {
+          "layout": "left",
+          "eyebrow": "maintenance",
+          "heading": "Prevent issues before they happen",
+          "body": "Regular checks and service reduce breakdowns and keep the experience consistent for customers.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "support",
+          "heading": "Fast response when you need it",
+          "body": "If something goes wrong, we’re on it—quick fixes and clear communication.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "slug": "office-building",
+      "name": "Office Building",
+      "description": "Perfect for corporate environments and business centers",
+      "iconKey": "FaBuilding",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "left",
+          "eyebrow": "office friendly",
+          "heading": "Boost productivity with on-site refreshments",
+          "body": "Keep teams energized with snacks and drinks just steps away. We handle installation, restocking, and support so your breakroom stays ready every day.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "smart service",
+          "heading": "Reliable restocks and fast support",
+          "body": "Our routes and monitoring help reduce out-of-stocks. When you need help, we respond quickly so downtime stays minimal.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "appartment-complex",
+      "name": "Appartment Complex",
+      "description": "Convenient solutions for residential communities",
+      "iconKey": "FaHome",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "center",
+          "eyebrow": "resident convenience",
+          "heading": "Amenities that residents actually use",
+          "body": "Add a simple, high-value amenity that works 24/7. Great for lobbies, common areas, and fitness rooms.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "left",
+          "eyebrow": "clean setup",
+          "heading": "Professional installation and maintenance",
+          "body": "We install with minimal disruption and keep machines clean, stocked, and functioning properly.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "ware-house-industrial",
+      "name": "Ware House/Industrial",
+      "description": "Reliable vending for industrial and warehouse facilities",
+      "iconKey": "FaWarehouse",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "left",
+          "eyebrow": "built for shifts",
+          "heading": "Keep teams fueled during long shifts",
+          "body": "Fast access to snacks and drinks reduces breaks off-site and keeps operations moving.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "high usage",
+          "heading": "Stocked for peak demand",
+          "body": "We tailor product mix and service frequency to match your headcount and shift schedule.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "gym-fitness-center",
+      "name": "Gym/Fitness-center",
+      "description": "Healthy snacks and drinks for active members",
+      "iconKey": "FaDumbbell",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "center",
+          "eyebrow": "fitness focused",
+          "heading": "Healthy options your members want",
+          "body": "Protein bars, electrolyte drinks, and better-for-you snacks—optimized for the gym environment.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "simple operations",
+          "heading": "We manage the details",
+          "body": "We keep inventory fresh, handle maintenance, and support cashless payments so it just works.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "hospital-healtcare",
+      "name": "Hospital / Healtcare",
+      "description": "24/7 refreshment options for staff and visitors",
+      "iconKey": "FaHospital",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "left",
+          "eyebrow": "always available",
+          "heading": "24/7 access for staff and visitors",
+          "body": "Healthcare never stops. We provide reliable vending solutions that support late-night staff and visiting families.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "contactless",
+          "heading": "Fast, modern payments",
+          "body": "Tap-to-pay and mobile wallets reduce friction and speed up purchases in busy areas.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "school-university",
+      "name": "School University",
+      "description": "Campus-wide vending solutions for students and faculty",
+      "iconKey": "FaGraduationCap",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "center",
+          "eyebrow": "campus ready",
+          "heading": "Reliable vending for high-traffic areas",
+          "body": "From libraries to dorm common areas, we keep popular items available and machines running smoothly.",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "left",
+          "eyebrow": "variety",
+          "heading": "Mix of classics and better options",
+          "body": "We balance top sellers with healthier items to match your campus preferences and guidelines.",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "other",
+      "name": "Other",
+      "description": "Custom solutions for your unique location",
+      "iconKey": "FaMapMarkerAlt",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "center",
+          "eyebrow": "custom fit",
+          "heading": "Tailored to your space and needs",
+          "body": "Tell us about your location and we’ll recommend the right machines, product mix, and service frequency.",
+          "imageSrc": "/uploads/cart1.png"
+        }
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "t-office-1",
+      "locationSlug": "office-building",
+      "locationLabel": "Office Building",
+      "quote": "Installation was smooth and the machine looks great in our break area. Restocks are consistent and our team loves the snack selection.",
+      "clientName": "Operations Manager"
+    },
+    {
+      "id": "t-warehouse-1",
+      "locationSlug": "ware-house-industrial",
+      "locationLabel": "Ware House/Industrial",
+      "quote": "Our staff works long shifts, so having easy access to snacks and drinks makes a big difference. Service has been consistent. No complaints at all.",
+      "clientName": "Shift Supervisor"
+    },
+    {
+      "id": "t-gym-1",
+      "locationSlug": "gym-fitness-center",
+      "locationLabel": "Gym/Fitness-center",
+      "quote": "Members appreciate the healthier options and cold drinks. We’ve seen great usage and quick support when we needed help.",
+      "clientName": "Gym Owner"
+    },
+    {
+      "id": "t-hospital-1",
+      "locationSlug": "hospital-healtcare",
+      "locationLabel": "Hospital / Healtcare",
+      "quote": "Great for visitors and staff. Machines are always stocked and payments are easy with tap-to-pay.",
+      "clientName": "Facilities Coordinator"
+    },
+    {
+      "id": "t-school-1",
+      "locationSlug": "school-university",
+      "locationLabel": "School University",
+      "quote": "Students love the variety and the machines handle peak times well. Support is responsive and professional.",
+      "clientName": "Campus Admin"
+    },
+    {
+      "id": "t-apartment-1",
+      "locationSlug": "appartment-complex",
+      "locationLabel": "Appartment Complex",
+      "quote": "Residents enjoy the convenience. The setup was quick and the machines are kept clean and stocked.",
+      "clientName": "Property Manager"
+    },
+    {
+      "id": "t-other-1",
+      "locationSlug": "other",
+      "locationLabel": "Other",
+      "quote": "They tailored the setup to our space and needs. Great communication and reliable service.",
+      "clientName": "Site Manager"
+    }
+  ]
+}

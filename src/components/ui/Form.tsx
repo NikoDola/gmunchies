@@ -1,12 +1,24 @@
 import "./Form.css";
-export default function Form() {
+
+type FormProps = {
+  intro?: {
+    eyebrow?: string;
+    heading: string;
+    body?: string;
+  };
+  services: { slug: string; title: string; display: boolean }[];
+  locations: { slug: string; name: string }[];
+};
+
+export default function Form({ intro, services, locations }: FormProps) {
+  const visibleServices = services.filter((s) => s.display);
   return (
     <div id="request-services-form" className="section-full formSection">
       <div className="section-regular">
         <div className="headingWrapper">
-          <p className="beforeHeading">get startet</p>
-          <h2 className="h2">Request Service Today</h2>
-          <p className="afterHeading">Fill out the form below and we'll get back to you within 24 hours.</p>
+          {intro?.eyebrow ? <p className="beforeHeading">{intro.eyebrow}</p> : null}
+          <h2 className="h2">{intro?.heading ?? "Request Service Today"}</h2>
+          {intro?.body ? <p className="afterHeading">{intro.body}</p> : null}
         </div>
         <form className="formWrapper"> 
         <div className="twoInputsWrapper">
@@ -36,23 +48,22 @@ export default function Form() {
             <label>Service intersted in</label>
             <select>
               <option>Select service</option>
-              <option>Vending machines</option>
-              <option>Micro Market</option>
-              <option>Vending machines</option>
-              <option>Vending machines</option>
+              {visibleServices.map((s) => (
+                <option key={s.slug} value={s.slug}>
+                  {s.title}
+                </option>
+              ))}
             </select>
           </div>
           <div className="oneInputWrapper">
             <label>Location type</label>
             <select>
               <option>Select location</option>
-              <option>Office Building</option>
-              <option>Appartment Complex</option>
-              <option>Ware House/Industrial</option>
-              <option>Gym/Fitness-center</option>
-              <option>Hospital / Healtcare</option>
-              <option>School University</option>
-              <option>Other</option>
+              {locations.map((l) => (
+                <option key={l.slug} value={l.slug}>
+                  {l.name}
+                </option>
+              ))}
             </select>
           </div>
         </div>

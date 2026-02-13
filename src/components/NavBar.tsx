@@ -5,7 +5,15 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Navbar() {
+type NavLink = { label: string; href: string };
+type NavbarProps = {
+  logoSrc: string;
+  logoHref: string;
+  links: NavLink[];
+  ctaLabel: string;
+};
+
+export default function Navbar({ logoSrc, logoHref, links, ctaLabel }: NavbarProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -54,9 +62,9 @@ export default function Navbar() {
   return (
     <header className="nav">
       <div className="nav-top">
-        <Link href="/" className="logo">
+        <Link href={logoHref} className="logo" onClick={() => setOpen(false)}>
           <Image
-            src="/branding/logo.svg"
+            src={logoSrc}
             alt="gmunchies logo"
             width={180}
             height={100}
@@ -77,17 +85,15 @@ export default function Navbar() {
       </div>
 
       <nav className={`nav-menu ${open ? "open" : ""}`}>
-        <Link className="navLink" href="/" onClick={() => setOpen(false)}>
-          Home
-        </Link>
-        <Link className="navLink" href="/about-us" onClick={() => setOpen(false)}>
-          About
-        </Link>
-        <Link className="navLink" href="/services" onClick={() => setOpen(false)}>
-          Services
-        </Link>
-   
-        <button className="ctaButton" onClick={scrollToForm}>request services</button>
+        {links.map((l) => (
+          <Link key={l.href} className="navLink" href={l.href} onClick={() => setOpen(false)}>
+            {l.label}
+          </Link>
+        ))}
+
+        <button className="ctaButton" onClick={scrollToForm}>
+          {ctaLabel}
+        </button>
       </nav>
     </header>
   );

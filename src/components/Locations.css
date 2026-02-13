@@ -20,6 +20,12 @@
   width: 100%;
 }
 
+.locationCardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 .locationGrid .centerCard {
   grid-column: 2;
 }

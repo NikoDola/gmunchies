@@ -1,13 +1,21 @@
 
 import "./TestimonialCard.css"
 
-export default function TestimonialCard(){
+export default function TestimonialCard({
+  locationLabel,
+  quote,
+  clientName,
+}: {
+  locationLabel: string;
+  quote: string;
+  clientName: string;
+}){
   return(
     <div className="TestimonialCardWrapper">
       <div className="headingWrapper">
-        <p className="industrial">Warehouse / Industrial Facility</p>
-        <p className="testimonialDescription">Our staff works long shifts, so having easy access to snacks and drinks makes a big difference. The installation was fast, and the ongoing service has been consistent. No complaints at all.</p>
-        <h3 className="clientName">Niko Dola</h3>
+        <p className="industrial">{locationLabel}</p>
+        <p className="testimonialDescription">{quote}</p>
+        <h3 className="clientName">{clientName}</h3>
       </div>
     </div>
   )

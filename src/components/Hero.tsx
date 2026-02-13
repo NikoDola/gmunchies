@@ -4,7 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import "./Hero.css";
 import Image from "next/image";
 
-export default function Hero() {
+type HeroProps = {
+  headline: string;
+  body: string;
+  ctaLabel: string;
+  imageSrc: string;
+};
+
+export default function Hero({ headline, body, ctaLabel, imageSrc }: HeroProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const imgRef = useRef<HTMLDivElement | null>(null);
 
@@ -62,7 +69,7 @@ export default function Hero() {
       >
         <Image
           className="heroImg"
-          src="/uploads/hero.webp"
+          src={imageSrc}
           alt="vending store"
           fill
           priority
@@ -72,15 +79,11 @@ export default function Hero() {
       </div>
 
       <div className="CTA_Wrapper">
-        <h1 className="heroHeading">
-          Your <span>Trusted</span> <br />Vending <span>Partner</span>
-        </h1>
-        <p className="heroDescription">
-          We deliver smart, reliable vending solutions for offices and public
-          spaces, handling installation, restocking, and support so everything
-          runs smoothly. Quality products, fast service, zero hassle.
-        </p>
-        <button className="ctaButton text-black" onClick={scrollToForm}>request services</button>
+        <h1 className="heroHeading">{headline}</h1>
+        <p className="heroDescription">{body}</p>
+        <button className="ctaButton text-black" onClick={scrollToForm}>
+          {ctaLabel}
+        </button>
       </div>
 
       <div className="scrollContent"></div>

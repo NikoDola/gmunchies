@@ -1,7 +1,5 @@
-import Admin from "@/featured/admin/Admin"
+import { redirect } from "next/navigation";
 
-export default function(){
-  return(
-    <Admin/>
-  )
+export default function AdminIndex() {
+  redirect("/admin/dashboard");
 }

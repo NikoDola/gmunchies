@@ -3,28 +3,44 @@
 import "./Testimonials.css";
 import TestimonialCard from "./ui/TestimonialCard";
 
-export default function Testimonials() {
-  const cards = [1, 2, 3, 4, 5, 6, 7];
+type Testimonial = {
+  id: string;
+  locationLabel: string;
+  quote: string;
+  clientName: string;
+};
+
+type TestimonialsProps = {
+  intro?: {
+    eyebrow?: string;
+    heading: string;
+    body?: string;
+  };
+  testimonials: Testimonial[];
+};
+
+export default function Testimonials({ intro, testimonials }: TestimonialsProps) {
+  const loop = testimonials.length > 0 ? [...testimonials, ...testimonials] : [];
 
   return (
     <section className="section-full testimonialSection">
       <div className="testomonialWrapper">
         <div className="section-regular">
           <div className="headingWrapper">
-            <p className="beforeHeading">Our Happy clients</p>
-            <h2 className="h2">Testimonials</h2>
-            <p className="afterHeading">
-              See what businesses say about working with us and how our vending
-              solutions make a difference in their locations.
-            </p>
+            {intro?.eyebrow ? <p className="beforeHeading">{intro.eyebrow}</p> : null}
+            <h2 className="h2">{intro?.heading ?? "Testimonials"}</h2>
+            {intro?.body ? <p className="afterHeading">{intro.body}</p> : null}
           </div>
         </div>
         <div className="testimonialSlider">
           <div className="testimonialTrack">
-            {[...cards, ...cards].map((item, index) => (
-              <div className="testimonialItem" key={index}>
-                <TestimonialCard />
-                
+            {loop.map((t, index) => (
+              <div className="testimonialItem" key={`${t.id}-${index}`}>
+                <TestimonialCard
+                  locationLabel={t.locationLabel}
+                  quote={t.quote}
+                  clientName={t.clientName}
+                />
               </div>
             ))}
           </div>
