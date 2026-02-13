@@ -3,9 +3,18 @@
     "logoSrc": "/branding/logo.svg",
     "logoHref": "/",
     "links": [
-      { "label": "Home", "href": "/" },
-      { "label": "Services", "href": "/services" },
-      { "label": "Locations", "href": "/locations" }
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Services",
+        "href": "/services"
+      },
+      {
+        "label": "Locations",
+        "href": "/locations"
+      }
     ],
     "ctaLabel": "Request Service"
   },
@@ -228,7 +237,7 @@
   "locations": [
     {
       "slug": "office-building",
-      "name": "Office Building",
+      "name": "Office Building.",
       "description": "Perfect for corporate environments and business centers",
       "iconKey": "FaBuilding",
       "heroImageSrc": "/uploads/hero.webp",
@@ -385,51 +394,51 @@
     {
       "id": "t-office-1",
       "locationSlug": "office-building",
-      "locationLabel": "Office Building",
       "quote": "Installation was smooth and the machine looks great in our break area. Restocks are consistent and our team loves the snack selection.",
-      "clientName": "Operations Manager"
+      "clientName": "Operations Manager",
+      "locationLabel": "Office Building"
     },
     {
       "id": "t-warehouse-1",
       "locationSlug": "ware-house-industrial",
-      "locationLabel": "Ware House/Industrial",
       "quote": "Our staff works long shifts, so having easy access to snacks and drinks makes a big difference. Service has been consistent. No complaints at all.",
-      "clientName": "Shift Supervisor"
+      "clientName": "Shift Supervisor",
+      "locationLabel": "Ware House/Industrial"
     },
     {
       "id": "t-gym-1",
       "locationSlug": "gym-fitness-center",
-      "locationLabel": "Gym/Fitness-center",
       "quote": "Members appreciate the healthier options and cold drinks. We’ve seen great usage and quick support when we needed help.",
-      "clientName": "Gym Owner"
+      "clientName": "Gym Owner",
+      "locationLabel": "Gym/Fitness-center"
     },
     {
       "id": "t-hospital-1",
       "locationSlug": "hospital-healtcare",
-      "locationLabel": "Hospital / Healtcare",
       "quote": "Great for visitors and staff. Machines are always stocked and payments are easy with tap-to-pay.",
-      "clientName": "Facilities Coordinator"
+      "clientName": "Facilities Coordinator",
+      "locationLabel": "Hospital / Healtcare"
     },
     {
       "id": "t-school-1",
       "locationSlug": "school-university",
-      "locationLabel": "School University",
       "quote": "Students love the variety and the machines handle peak times well. Support is responsive and professional.",
-      "clientName": "Campus Admin"
+      "clientName": "Campus Admin",
+      "locationLabel": "School University"
     },
     {
       "id": "t-apartment-1",
       "locationSlug": "appartment-complex",
-      "locationLabel": "Appartment Complex",
       "quote": "Residents enjoy the convenience. The setup was quick and the machines are kept clean and stocked.",
-      "clientName": "Property Manager"
+      "clientName": "Property Manager",
+      "locationLabel": "Appartment Complex"
     },
     {
       "id": "t-other-1",
       "locationSlug": "other",
-      "locationLabel": "Other",
       "quote": "They tailored the setup to our space and needs. Great communication and reliable service.",
-      "clientName": "Site Manager"
+      "clientName": "Site Manager",
+      "locationLabel": "Other"
     }
   ]
 }
