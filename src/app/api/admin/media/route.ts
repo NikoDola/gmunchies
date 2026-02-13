@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/authOptions";
 
 const OWNER = "NikoDola";
 const REPO = "gmunchies";
@@ -13,10 +15,9 @@ function serverError(message = "Server error") {
   return NextResponse.json({ ok: false, error: message }, { status: 500 });
 }
 
-function checkAuth(req: Request) {
-  const secret = process.env.ADMIN_SECRET;
-  const header = req.headers.get("x-admin-secret");
-  return Boolean(secret && header === secret);
+async function requireSession() {
+  const session = await getServerSession(authOptions);
+  return Boolean(session);
 }
 
 async function githubFetch(pathname: string) {
@@ -33,7 +34,7 @@ async function githubFetch(pathname: string) {
 }
 
 export async function GET(req: Request) {
-  if (!checkAuth(req)) return unauthorized();
+  if (!(await requireSession())) return unauthorized();
 
   try {
     const res = await githubFetch(`/repos/${OWNER}/${REPO}/contents/${DIR_PATH}`);

@@ -2,9 +2,10 @@
 
 import "./Admin.css";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import type { CmsContent } from "@/lib/content";
 import { FiArrowLeft } from "react-icons/fi";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 type EditorMode = "locations" | "services";
 
@@ -17,6 +18,7 @@ function deepClone<T>(value: T): T {
 }
 
 export default function Dashboard() {
+  const { data: session, status: sessionStatus } = useSession();
   const [cms, setCms] = useState<CmsContent | null>(null);
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -25,8 +27,6 @@ export default function Dashboard() {
   const [media, setMedia] = useState<string[]>([]);
   const [mediaTarget, setMediaTarget] = useState<null | { type: "location" | "service"; slug: string; blockIdx?: number; field: "heroImageSrc" | "imageSrc" }>(null);
 
-  const secret = useMemo(() => process.env.NEXT_PUBLIC_ADMIN_SECRET ?? "", []);
-
   async function load() {
     if (loading) return;
     setLoading(true);
@@ -34,7 +34,7 @@ export default function Dashboard() {
     try {
       const res = await fetch("/api/admin/content", {
         method: "GET",
-        headers: { "x-admin-secret": secret },
+        credentials: "include",
       });
       const json = await res.json();
       if (!res.ok) {
@@ -58,7 +58,8 @@ export default function Dashboard() {
     try {
       const res = await fetch("/api/admin/content", {
         method: "PUT",
-        headers: { "Content-Type": "application/json", "x-admin-secret": secret },
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify(cms),
       });
       const json = await res.json();
@@ -80,9 +81,11 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
+    if (sessionStatus !== "authenticated") return;
+    if (cms) return;
     void load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [sessionStatus]);
 
   async function uploadFile(file: File): Promise<string | null> {
     try {
@@ -90,7 +93,7 @@ export default function Dashboard() {
       form.append("file", file);
       const res = await fetch("/api/admin/upload", {
         method: "POST",
-        headers: { "x-admin-secret": secret },
+        credentials: "include",
         body: form,
       });
       const json = await res.json();
@@ -110,7 +113,7 @@ export default function Dashboard() {
     setMediaTarget(target);
     setMediaOpen(true);
     try {
-      const res = await fetch("/api/admin/media", { headers: { "x-admin-secret": secret } });
+      const res = await fetch("/api/admin/media", { credentials: "include" });
       const json = await res.json();
       if (!res.ok) {
         setStatus(`error: ${json.error ?? "failed to load media"}`);
@@ -203,6 +206,15 @@ export default function Dashboard() {
         <div className="adminTopbar">
           <h2>Admin Dashboard</h2>
           <div className="adminActions">
+            {session ? (
+              <button className="adminButton" onClick={() => signOut()} disabled={loading}>
+                Sign out
+              </button>
+            ) : (
+              <button className="adminButton adminButtonPrimary" onClick={() => signIn("google")} disabled={loading}>
+                Sign in with Google
+              </button>
+            )}
             <button className="adminButton" onClick={load} disabled={loading}>
               {loading ? "Loading..." : "Reload"}
             </button>

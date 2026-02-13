@@ -5,6 +5,7 @@ import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { getCmsContent } from "@/lib/content";
 import AdminAwareChrome from "@/components/AdminAwareChrome";
+import Providers from "@/components/Providers";
 
 
 // Configure Inter for Body
@@ -49,7 +50,7 @@ export default async function RootLayout({
           }
           footer={<Footer />}
         >
-          {children}
+          <Providers>{children}</Providers>
         </AdminAwareChrome>
       </body>
     </html>

@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/authOptions";
 
 // ---------------- CONFIG ----------------
 const OWNER = "NikoDola";
@@ -19,10 +21,9 @@ function serverError(message = "Server error") {
   return NextResponse.json({ ok: false, error: message }, { status: 500 });
 }
 
-function checkAuth(req: Request) {
-  const secret = process.env.ADMIN_SECRET;
-  const header = req.headers.get("x-admin-secret");
-  return Boolean(secret && header === secret);
+async function requireSession() {
+  const session = await getServerSession(authOptions);
+  return Boolean(session);
 }
 
 function safeFilename(name: string) {
@@ -57,7 +58,7 @@ async function githubFetch(pathname: string, init?: RequestInit) {
 }
 
 export async function POST(req: Request) {
-  if (!checkAuth(req)) return unauthorized();
+  if (!(await requireSession())) return unauthorized();
 
   try {
     const form = await req.formData();

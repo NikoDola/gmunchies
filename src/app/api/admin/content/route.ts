@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { cmsSchema } from "@/lib/schemas";
 import fs from "fs/promises";
 import path from "path";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/authOptions";
 
 // ---------------- CONFIG ----------------
 const OWNER = "NikoDola";
@@ -22,10 +24,9 @@ function badRequest(message = "Invalid request") {
   return NextResponse.json({ ok: false, error: message }, { status: 400 });
 }
 
-function checkAuth(req: Request) {
-  const secret = process.env.ADMIN_SECRET;
-  const header = req.headers.get("x-admin-secret");
-  return Boolean(secret && header === secret);
+async function requireSession() {
+  const session = await getServerSession(authOptions);
+  return Boolean(session);
 }
 
 async function getErrorDetails(res: Response) {
@@ -66,7 +67,7 @@ async function readLocalCms() {
 
 // ---------------- GET ----------------
 export async function GET(req: Request) {
-  if (!checkAuth(req)) return unauthorized();
+  if (!(await requireSession())) return unauthorized();
 
   try {
     const res = await githubFetch(`/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`);
@@ -110,7 +111,7 @@ export async function GET(req: Request) {
 
 // ---------------- PUT ----------------
 export async function PUT(req: Request) {
-  if (!checkAuth(req)) return unauthorized();
+  if (!(await requireSession())) return unauthorized();
 
   try {
     const body = await req.json();
