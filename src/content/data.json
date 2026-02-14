@@ -141,7 +141,7 @@
       ]
     },
     {
-      "slug": "cashless-payments",
+      "slug": "cashless-payments.",
       "display": false,
       "iconSrc": "/uploads/icon_cashless-payments.svg",
       "title": "Cashless Payment",
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "slug": "installation-setup",
+      "slug": "installation-setup,",
       "display": true,
       "iconSrc": "/uploads/icon_instalation.svg",
       "title": "Machine Installation & Setup",
