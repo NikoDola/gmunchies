@@ -16,7 +16,7 @@ export default function TestimonialCard({
         <p className="testimonialDescription">{quote}</p>
       </div>
       <div className="hrLine"></div>
-      <h4 className="clientName">{clientName}</h4>
+      <h3 className="clientName">{clientName}</h3>
     </div>
   );
 }
