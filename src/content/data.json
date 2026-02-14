@@ -237,8 +237,8 @@
   "locations": [
     {
       "slug": "office-building",
-      "name": "Office Building.",
-      "description": "Perfect for corporate environments and business centers",
+      "name": "Office Building",
+      "description": "Perfect for corporate environments and business centers.",
       "iconKey": "FaBuilding",
       "heroImageSrc": "/uploads/hero.webp",
       "blocks": [
