@@ -307,7 +307,7 @@
     {
       "slug": "gym-fitness-center",
       "name": "Gym/Fitness-center",
-      "description": "Healthy snacks and drinks for active members",
+      "description": "Healthy snacks and drinks for active members.",
       "iconKey": "FaDumbbell",
       "heroImageSrc": "/uploads/hero.webp",
       "blocks": [
