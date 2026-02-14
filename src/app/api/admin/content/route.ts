@@ -65,6 +65,11 @@ async function readLocalCms() {
   return cmsSchema.parse(decoded);
 }
 
+async function writeLocalCms(data: unknown) {
+  const filePath = path.join(process.cwd(), "src", "content", "data.json");
+  await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf8");
+}
+
 // ---------------- GET ----------------
 export async function GET(req: Request) {
   if (!(await requireSession())) return unauthorized();
@@ -156,6 +161,15 @@ export async function PUT(req: Request) {
         { ok: false, error: "Failed to update CMS file", details },
         { status: 500 },
       );
+    }
+
+    // Dev convenience: keep local file in sync so refresh shows changes
+    if (process.env.NODE_ENV !== "production") {
+      try {
+        await writeLocalCms(parsed.data);
+      } catch {
+        // ignore local write errors in dev
+      }
     }
 
     return NextResponse.json({ ok: true, committed: true });

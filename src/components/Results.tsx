@@ -19,7 +19,7 @@ export default function Counter() {
       </div>
 
         <div className="rsCardsWrapper">
-          <ResultCard headline="Machine Sold" target={150} Icon={GiVendingMachine}/>
+
           <ResultCard headline="Happy Clients" target={45} Icon={BiUser}/>
           <ResultCard headline="Locations" target={150} Icon={GoLocation}/>
           <ResultCard headline="Maintenance" target={14000} Icon={GrHostMaintenance}/>

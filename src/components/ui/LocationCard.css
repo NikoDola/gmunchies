@@ -10,6 +10,7 @@
   transition: all 0.3s ease;
   gap: var(--space-6);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  min-height: 250px;
 }
 
 .locationCard:hover {

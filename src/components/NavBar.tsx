@@ -6,14 +6,25 @@ import Link from "next/link";
 import Image from "next/image";
 
 type NavLink = { label: string; href: string };
+type ServiceOption = { slug: string; title: string; display: boolean };
+type LocationOption = { slug: string; name: string };
 type NavbarProps = {
   logoSrc: string;
   logoHref: string;
   links: NavLink[];
   ctaLabel: string;
+  services: ServiceOption[];
+  locations: LocationOption[];
 };
 
-export default function Navbar({ logoSrc, logoHref, links, ctaLabel }: NavbarProps) {
+export default function Navbar({
+  logoSrc,
+  logoHref,
+  links,
+  ctaLabel,
+  services,
+  locations,
+}: NavbarProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -59,10 +70,14 @@ export default function Navbar({ logoSrc, logoHref, links, ctaLabel }: NavbarPro
     requestAnimationFrame(animation);
   };
 
+  const closeMenu = () => {
+    setOpen(false);
+  };
+
   return (
     <header className="nav">
       <div className="nav-top">
-        <Link href={logoHref} className="logo" onClick={() => setOpen(false)}>
+        <Link href={logoHref} className="logo" onClick={closeMenu}>
           <Image
             src={logoSrc}
             alt="gmunchies logo"
@@ -83,13 +98,98 @@ export default function Navbar({ logoSrc, logoHref, links, ctaLabel }: NavbarPro
           {open ? "✕" : "☰"}
         </button>
       </div>
+      
 
       <nav className={`nav-menu ${open ? "open" : ""}`}>
-        {links.map((l) => (
-          <Link key={l.href} className="navLink" href={l.href} onClick={() => setOpen(false)}>
-            {l.label}
-          </Link>
-        ))}
+        {links.map((l) => {
+          const isServices = l.href === "/services";
+          const isLocations = l.href === "/locations";
+
+          if (isServices) {
+            return (
+              <div key={l.href} className="navDropdown">
+                <div className="navDropdownRow">
+                  <Link
+                    className="navLink navDropdownTrigger"
+                    href={l.href}
+                    onClick={() => {
+                      // desktop: navigate; mobile: ok too
+                      closeMenu();
+                    }}
+                  >
+                    {l.label}
+                  </Link>
+                  <span className="navDropdownArrow" aria-hidden="true">
+                    ›
+                  </span>
+                </div>
+
+                <div className="navDropdownMenu" role="menu" aria-label="Services">
+                  <Link className="navDropdownItem" href="/services" onClick={closeMenu} role="menuitem">
+                    All services
+                  </Link>
+                  {services
+                    .filter((s) => s.display)
+                    .map((s) => (
+                      <Link
+                        key={s.slug}
+                        className="navDropdownItem"
+                        href={`/service/${s.slug}`}
+                        onClick={closeMenu}
+                        role="menuitem"
+                      >
+                        {s.title}
+                      </Link>
+                    ))}
+                </div>
+              </div>
+            );
+          }
+
+          if (isLocations) {
+            return (
+              <div key={l.href} className="navDropdown">
+                <div className="navDropdownRow">
+                  <Link
+                    className="navLink navDropdownTrigger"
+                    href={l.href}
+                    onClick={() => {
+                      closeMenu();
+                    }}
+                  >
+                    {l.label}
+                  </Link>
+                  <span className="navDropdownArrow" aria-hidden="true">
+                    ›
+                  </span>
+                </div>
+
+                <div className="navDropdownMenu" role="menu" aria-label="Locations">
+                  <Link className="navDropdownItem" href="/locations" onClick={closeMenu} role="menuitem">
+                    All locations
+                  </Link>
+                  {locations.map((loc) => (
+                    <Link
+                      key={loc.slug}
+                      className="navDropdownItem"
+                      href={`/location/${loc.slug}`}
+                      onClick={closeMenu}
+                      role="menuitem"
+                    >
+                      {loc.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <Link key={l.href} className="navLink" href={l.href} onClick={closeMenu}>
+              {l.label}
+            </Link>
+          );
+        })}
 
         <button className="ctaButton" onClick={scrollToForm}>
           {ctaLabel}

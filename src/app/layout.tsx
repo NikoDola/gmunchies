@@ -46,6 +46,8 @@ export default async function RootLayout({
               logoHref={cms.navbar.logoHref}
               links={cms.navbar.links}
               ctaLabel={cms.navbar.ctaLabel}
+              services={cms.services}
+              locations={cms.locations}
             />
           }
           footer={<Footer />}

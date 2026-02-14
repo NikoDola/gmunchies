@@ -1,5 +1,4 @@
-
-import "./TestimonialCard.css"
+import "./TestimonialCard.css";
 
 export default function TestimonialCard({
   locationLabel,
@@ -9,14 +8,15 @@ export default function TestimonialCard({
   locationLabel: string;
   quote: string;
   clientName: string;
-}){
-  return(
+}) {
+  return (
     <div className="TestimonialCardWrapper">
       <div className="headingWrapper">
         <p className="industrial">{locationLabel}</p>
         <p className="testimonialDescription">{quote}</p>
-        <h3 className="clientName">{clientName}</h3>
       </div>
+      <div className="hrLine"></div>
+      <h4 className="clientName">{clientName}</h4>
     </div>
-  )
+  );
 }

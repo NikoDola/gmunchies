@@ -64,6 +64,92 @@
   border: solid var(--black) 1px;
 }
 
+.navDropdown {
+  position: relative;
+}
+
+.navDropdownRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navDropdownArrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 4px;
+  transform: rotate(0deg); /* right */
+  transition: transform 200ms ease;
+  user-select: none;
+}
+
+.navDropdown:hover .navDropdownArrow {
+  transform: rotate(90deg); /* down */
+}
+
+.navDropdownMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 260px;
+  padding: 10px;
+  border-radius: 14px;
+  background: var(--primary-color); /* red */
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  z-index: 50;
+  --dropdown-divider: rgba(255, 255, 255, 0.22);
+
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 220ms ease;
+}
+
+/* Hover "bridge" to prevent the gap from closing the menu */
+.navDropdownMenu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -12px;
+  height: 12px;
+  background: transparent;
+}
+
+/* Desktop hover: smooth drop-down */
+.navDropdown:hover .navDropdownMenu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.navDropdownItem {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.2;
+  transition: background 160ms ease;
+  border-bottom: 1px solid var(--dropdown-divider);
+}
+
+.navDropdownMenu .navDropdownItem:last-child {
+  border-bottom: none;
+}
+
+.navDropdownItem:hover,
+.navDropdownItem:focus-visible {
+  background: rgba(255, 255, 255, 0.18);
+  outline: none;
+}
+
 .burger {
   display: none;
   font-size: 1.5rem;
@@ -134,6 +220,47 @@
 
   .ctaButton {
     margin-top: 1rem;
+  }
+
+  .navDropdown {
+    width: 100%;
+  }
+
+  .navDropdownRow {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  /* Mobile: menus open by default */
+  .navDropdownMenu {
+    position: static;
+    min-width: 0;
+    width: 100%;
+    margin-top: 8px;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    display: block;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+    --dropdown-divider: rgba(0, 0, 0, 0.12);
+  }
+
+  .navDropdownArrow {
+    transform: rotate(90deg);
+  }
+
+  .navDropdownItem {
+    color: var(--black);
+    padding: 10px 0 10px 18px;
+    border-radius: 0;
+  }
+
+  .navDropdownItem:hover,
+  .navDropdownItem:focus-visible {
+    background: transparent;
   }
 }
 
