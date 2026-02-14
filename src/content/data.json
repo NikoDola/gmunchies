@@ -142,7 +142,7 @@
     },
     {
       "slug": "cashless-payments",
-      "display": true,
+      "display": false,
       "iconSrc": "/uploads/icon_cashless-payments.svg",
       "title": "Cashless Payment",
       "excerpt": "Apple Pay, Google Pay, tap-to-pay cards, and mobile wallets. Fast and simple.",
