@@ -173,7 +173,7 @@
     },
     {
       "slug": "installation-setup,",
-      "display": true,
+      "display": false,
       "iconSrc": "/uploads/icon_instalation.svg",
       "title": "Machine Installation & Setup",
       "excerpt": "Delivery, placement, and setup handled from start to finish.",
