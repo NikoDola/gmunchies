@@ -48,10 +48,10 @@
   },
   "services": [
     {
-      "slug": "snack-vending-machine",
+      "slug": "vending",
       "display": true,
-      "iconSrc": "/uploads/icon_snack-vending-machines.svg",
-      "title": "Snack Vending Machine",
+      "iconSrc": "/uploads/1771947434993-icon_vending.svg",
+      "title": "Vending",
       "excerpt": "Modern snack machines with top brands and smart inventory support. Clean look, reliable performance, easy.",
       "heroImageSrc": "/uploads/snack-vending.avif",
       "blocks": [
@@ -79,10 +79,10 @@
       ]
     },
     {
-      "slug": "drinks-vending-machine",
+      "slug": "coffee",
       "display": true,
-      "iconSrc": "/uploads/icon_drink-vending-machines.svg",
-      "title": "Drinks Vending Machine",
+      "iconSrc": "/uploads/1771947479788-icon_coffee.svg",
+      "title": "Coffee",
       "excerpt": "Cold beverages, energy drinks, and bottled water with fast cooling and smooth dispensing.",
       "heroImageSrc": "/uploads/hero.webp",
       "blocks": [
@@ -110,10 +110,10 @@
       ]
     },
     {
-      "slug": "combo-vending-machine",
+      "slug": "micro-market",
       "display": true,
-      "iconSrc": "/uploads/icon_combo-vending-machines.svg",
-      "title": "Combo Vending Machine",
+      "iconSrc": "/uploads/1771947568624-icon_micro-market.svg",
+      "title": "Micro Market",
       "excerpt": "Snacks + drinks in one machine. Perfect for smaller spaces that still need variety.",
       "heroImageSrc": "/uploads/hero.webp",
       "blocks": [
@@ -136,99 +136,6 @@
           "eyebrow": "managed service",
           "heading": "Stocking and maintenance included",
           "body": "We keep the machine filled and running, so your team gets consistent access to what they want.",
-          "imageSrc": "/uploads/hero.webp"
-        }
-      ]
-    },
-    {
-      "slug": "cashless-payments",
-      "display": false,
-      "iconSrc": "/uploads/icon_cashless-payments.svg",
-      "title": "Cashless Payment.",
-      "excerpt": "Apple Pay, Google Pay, tap-to-pay cards, and mobile wallets. Fast and simple.",
-      "heroImageSrc": "/uploads/hero.webp",
-      "blocks": [
-        {
-          "layout": "left",
-          "eyebrow": "payments",
-          "heading": "Tap-to-pay ready",
-          "body": "Modern payment options increase usage and make checkout effortless.",
-          "imageSrc": "/uploads/hero.webp"
-        },
-        {
-          "layout": "right",
-          "eyebrow": "more conversions",
-          "heading": "Fewer missed sales",
-          "body": "Customers buy more when checkout is simple. Cashless options mean fewer walkaways and more convenience.",
-          "imageSrc": "/uploads/cart1.png"
-        },
-        {
-          "layout": "center",
-          "eyebrow": "simple setup",
-          "heading": "Installed and configured for you",
-          "body": "We’ll set up readers and make sure everything works smoothly from day one.",
-          "imageSrc": "/uploads/hero.webp"
-        }
-      ]
-    },
-    {
-      "slug": "installation-setup,",
-      "display": false,
-      "iconSrc": "/uploads/icon_instalation.svg",
-      "title": "Machine Installation & Setup",
-      "excerpt": "Delivery, placement, and setup handled from start to finish.",
-      "heroImageSrc": "/uploads/hero.webp",
-      "blocks": [
-        {
-          "layout": "right",
-          "eyebrow": "start fast",
-          "heading": "Installed the right way",
-          "body": "We handle logistics, placement, and setup so your machines are ready to use immediately.",
-          "imageSrc": "/uploads/hero.webp"
-        },
-        {
-          "layout": "left",
-          "eyebrow": "planning",
-          "heading": "Placement that drives usage",
-          "body": "We recommend the best location for visibility and access, helping maximize convenience and sales.",
-          "imageSrc": "/uploads/cart1.png"
-        },
-        {
-          "layout": "center",
-          "eyebrow": "no disruption",
-          "heading": "Fast install, minimal downtime",
-          "body": "We coordinate with your staff so installation is quick and doesn’t interrupt operations.",
-          "imageSrc": "/uploads/hero.webp"
-        }
-      ]
-    },
-    {
-      "slug": "maintenance-support",
-      "display": true,
-      "iconSrc": "/uploads/icon_maintenance.svg",
-      "title": "Maintenance & Support",
-      "excerpt": "Regular service, refills, and technical support so machines always stay ready.",
-      "heroImageSrc": "/uploads/hero.webp",
-      "blocks": [
-        {
-          "layout": "center",
-          "eyebrow": "reliability",
-          "heading": "We keep everything running",
-          "body": "Preventive maintenance and quick support keep downtime near zero.",
-          "imageSrc": "/uploads/hero.webp"
-        },
-        {
-          "layout": "left",
-          "eyebrow": "maintenance",
-          "heading": "Prevent issues before they happen",
-          "body": "Regular checks and service reduce breakdowns and keep the experience consistent for customers.",
-          "imageSrc": "/uploads/cart1.png"
-        },
-        {
-          "layout": "right",
-          "eyebrow": "support",
-          "heading": "Fast response when you need it",
-          "body": "If something goes wrong, we’re on it—quick fixes and clear communication.",
           "imageSrc": "/uploads/hero.webp"
         }
       ]

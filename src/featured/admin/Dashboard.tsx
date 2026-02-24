@@ -25,7 +25,9 @@ export default function Dashboard() {
   const [mode, setMode] = useState<EditorMode>("locations");
   const [mediaOpen, setMediaOpen] = useState(false);
   const [media, setMedia] = useState<string[]>([]);
-  const [mediaTarget, setMediaTarget] = useState<null | { type: "location" | "service"; slug: string; blockIdx?: number; field: "heroImageSrc" | "imageSrc" }>(null);
+  const [mediaTarget, setMediaTarget] = useState<
+    null | { type: "location" | "service"; slug: string; blockIdx?: number; field: "heroImageSrc" | "imageSrc" | "iconSrc" }
+  >(null);
 
   async function load() {
     if (loading) return;
@@ -72,9 +74,40 @@ export default function Dashboard() {
         setStatus(`error: ${json.error ?? "save failed"}${details}`);
         return;
       }
-      setStatus("saved & redeploying, wait 5 to 10 minutes for changes");
+      if (json.committed === false) {
+        setStatus(`saved locally only (warning: ${json.warning ?? "GitHub sync disabled"})`);
+        return;
+      }
+
+      const sha = json.commit?.sha as string | undefined;
+      const url = json.commit?.url as string | undefined;
+      setStatus(
+        url
+          ? `saved to GitHub (commit ${sha?.slice(0, 7) ?? "unknown"}). Vercel should auto-deploy. ${url}`
+          : "saved to GitHub. Vercel should auto-deploy in a minute.",
+      );
     } catch {
       setStatus("network error");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function checkGithub() {
+    if (loading) return;
+    setLoading(true);
+    setStatus("checking GitHub token...");
+    try {
+      const res = await fetch("/api/admin/github-check", { credentials: "include" });
+      const json = await res.json();
+      if (!res.ok) {
+        const details = json.details ? `\n${JSON.stringify(json.details, null, 2)}` : "";
+        setStatus(`error: ${json.error ?? "GitHub check failed"}${details}`);
+        return;
+      }
+      setStatus(`GitHub OK: ${json.user?.login ?? "unknown"} → ${json.repo?.full_name ?? "repo"} (${json.tokenMeta?.kind ?? "token"})`);
+    } catch {
+      setStatus("error: GitHub check network error");
     } finally {
       setLoading(false);
     }
@@ -138,7 +171,7 @@ export default function Dashboard() {
         if (!loc) return next;
         if (mediaTarget.field === "heroImageSrc") {
           loc.heroImageSrc = path;
-        } else {
+        } else if (mediaTarget.field === "imageSrc") {
           const idx = mediaTarget.blockIdx ?? -1;
           if (idx >= 0 && loc.blocks[idx]) loc.blocks[idx].imageSrc = path;
         }
@@ -147,6 +180,8 @@ export default function Dashboard() {
         if (!srv) return next;
         if (mediaTarget.field === "heroImageSrc") {
           srv.heroImageSrc = path;
+        } else if (mediaTarget.field === "iconSrc") {
+          srv.iconSrc = path;
         } else {
           const idx = mediaTarget.blockIdx ?? -1;
           if (idx >= 0 && srv.blocks[idx]) srv.blocks[idx].imageSrc = path;
@@ -218,6 +253,9 @@ export default function Dashboard() {
             <button className="adminButton" onClick={load} disabled={loading}>
               {loading ? "Loading..." : "Reload"}
             </button>
+            <button className="adminButton" onClick={checkGithub} disabled={loading}>
+              Check GitHub
+            </button>
           </div>
         </div>
         {status && <p className="adminStatus">{status}</p>}
@@ -261,6 +299,9 @@ export default function Dashboard() {
           <button className="adminButton" onClick={load} disabled={loading}>
             {loading ? "Loading..." : "Reload"}
           </button>
+          <button className="adminButton" onClick={checkGithub} disabled={loading}>
+            Check GitHub
+          </button>
           <button className="adminButton adminButtonPrimary" onClick={save} disabled={loading}>
             {loading ? "Saving..." : "Save"}
           </button>
@@ -271,8 +312,8 @@ export default function Dashboard() {
 
       {mode === "locations" ? (
         <section className="adminSection">
-          {cms.locations.map((loc) => (
-            <details key={loc.slug} className="adminCard">
+          {cms.locations.map((loc, locIdx) => (
+            <details key={`loc-${locIdx}`} className="adminCard">
               <summary className="adminCardHeader">
                 <div>
                   <h3>{loc.name}</h3>
@@ -564,8 +605,8 @@ export default function Dashboard() {
         </section>
       ) : (
         <section className="adminSection">
-          {cms.services.map((srv) => (
-            <details key={srv.slug} className="adminCard">
+          {cms.services.map((srv, srvIdx) => (
+            <details key={`srv-${srvIdx}`} className="adminCard">
               <summary className="adminCardHeader">
                 <div>
                   <h3>{srv.title}</h3>
@@ -629,20 +670,49 @@ export default function Dashboard() {
                     </select>
                   </div>
                   <div className="adminField">
-                    <label>Icon (image path)</label>
-                    <input
-                      value={srv.iconSrc}
-                      onChange={(e) =>
-                        setCms((prev) => {
-                          if (!prev) return prev;
-                          const next = deepClone(prev);
-                          const target = next.services.find((s) => s.slug === srv.slug);
-                          if (target) target.iconSrc = e.target.value;
-                          return next;
-                        })
-                      }
-                      disabled={loading}
-                    />
+                    <label>Icon image</label>
+                    <div className="blockPreview">
+                      {srv.iconSrc ? <img src={srv.iconSrc} alt="" /> : null}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+                          const path = await uploadFile(file);
+                          if (!path) return;
+                          setCms((prev) => {
+                            if (!prev) return prev;
+                            const next = deepClone(prev);
+                            const target = next.services.find((s) => s.slug === srv.slug);
+                            if (target) target.iconSrc = path;
+                            return next;
+                          });
+                        }}
+                        disabled={loading}
+                      />
+                      <button
+                        className="adminButton"
+                        type="button"
+                        onClick={() => openMediaPicker({ type: "service", slug: srv.slug, field: "iconSrc" })}
+                        disabled={loading}
+                      >
+                        Add icon from media
+                      </button>
+                      <input
+                        value={srv.iconSrc}
+                        onChange={(e) =>
+                          setCms((prev) => {
+                            if (!prev) return prev;
+                            const next = deepClone(prev);
+                            const target = next.services.find((s) => s.slug === srv.slug);
+                            if (target) target.iconSrc = e.target.value;
+                            return next;
+                          })
+                        }
+                        disabled={loading}
+                      />
+                    </div>
                   </div>
                 </div>
 

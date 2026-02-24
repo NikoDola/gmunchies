@@ -15,11 +15,15 @@ export default function ServiceCard({
 }) {
   return (
     <div className="srvCardWrapper">
-      <Image className="srvImg" src={img} width={230} height={230} alt={headline} />
+      <div className="srvImgWrapper">
+        <div className="srvImgBg"></div>
+        <Image className="srvImg" src={img} width={230} height={230} alt={headline} />
+      </div>
+     
       <div className="srvTextWrapper">
         <h3 className="h3">{headline}</h3>
         <p>{bodyText}</p>
-        <Link className="view-more mt-4" href={href} aria-label={`Read more about ${headline}`}>
+        <Link className="view-more" href={href} aria-label={`Read more about ${headline}`}>
           Read More
           <span
             style={{

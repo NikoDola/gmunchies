@@ -1,18 +1,22 @@
 .cardWrapper{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-16);
   width: 100%;
+  text-align: center;
+ 
 }
 
-.srvCardWrapper{
-  display: flex;
-  flex-direction: column;
-}
 
-@media (max-width: 768px){
+
+@media (max-width: 1000px){
   .cardWrapper{
     grid-template-columns: 1fr;
-    gap: var(--space-12);
+    gap: 6rem;
+   
+    margin-top: 2rem;
+
   }
+
+
 }

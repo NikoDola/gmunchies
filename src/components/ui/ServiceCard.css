@@ -10,6 +10,49 @@
   margin-bottom: 1rem;
 }
 
+.view-more {
+  display: inline-block; /* or block */
+  margin-top: 2rem;
+}
+.srvCardWrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.srvImgWrapper{
+  position: relative;
+}
+.srvImgBg{
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background-color:var(--secondary);
+  z-index: -1;
+  left: 50%;
+  top: -1rem;
+  transform: translate(-50%);
+   animation: anmImg  5s  infinite ;
+}
+.srvImg{
+  position: relative;
+ 
+}
+@keyframes anmImg {
+  0%   { transform: translate(-50%,  0%); }
+  25%  { transform: translate(-45%,  5%); }
+  50%  { transform: translate(-55%,   0%); }
+  75%  { transform: translate(-45%, -5%); }
+  100% { transform: translate(-50%,  0%); }
+}
+
+.element {
+  animation: anmImg 8s linear infinite;
+}
+
+
+
+
 @media (max-width: 1000px){
   .srvCardWrapper{
     width: 100%;
