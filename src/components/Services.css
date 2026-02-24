@@ -5,6 +5,11 @@
   width: 100%;
 }
 
+.srvCardWrapper{
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 768px){
   .cardWrapper{
     grid-template-columns: 1fr;

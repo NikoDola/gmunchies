@@ -1,6 +1,7 @@
 import Locations from "@/components/Locations";
 import { getCmsContent } from "@/lib/content";
 
+
 export default async function LocationsPage() {
   const cms = await getCmsContent();
   return (

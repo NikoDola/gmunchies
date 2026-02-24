@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/authOptions";
+import { githubApiFetch } from "@/lib/github";
 
 // ---------------- CONFIG ----------------
 const OWNER = "NikoDola";
 const REPO = "gmunchies";
 const UPLOAD_DIR = "public/uploads";
-const GITHUB_API = "https://api.github.com";
 
 // ---------------- HELPERS ----------------
 function unauthorized() {
@@ -40,23 +40,6 @@ function extAllowed(filename: string) {
   return Boolean(ext && ["png", "jpg", "jpeg", "webp", "svg", "avif"].includes(ext));
 }
 
-async function githubFetch(pathname: string, init?: RequestInit) {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) throw new Error("Missing GITHUB_TOKEN");
-
-  const res = await fetch(`${GITHUB_API}${pathname}`, {
-    ...init,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/vnd.github+json",
-      ...(init?.headers ?? {}),
-    },
-    cache: "no-store",
-  });
-
-  return res;
-}
-
 export async function POST(req: Request) {
   if (!(await requireSession())) return unauthorized();
 
@@ -77,7 +60,7 @@ export async function POST(req: Request) {
 
     const encoded = buf.toString("base64");
 
-    const updateRes = await githubFetch(`/repos/${OWNER}/${REPO}/contents/${repoPath}`, {
+    const updateRes = await githubApiFetch(`/repos/${OWNER}/${REPO}/contents/${repoPath}`, {
       method: "PUT",
       body: JSON.stringify({
         message: `cms: upload ${unique}`,

@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/authOptions";
+import { githubApiFetch } from "@/lib/github";
 
 const OWNER = "NikoDola";
 const REPO = "gmunchies";
 const DIR_PATH = "public/uploads";
-const GITHUB_API = "https://api.github.com";
 
 function unauthorized() {
   return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
@@ -20,24 +20,11 @@ async function requireSession() {
   return Boolean(session);
 }
 
-async function githubFetch(pathname: string) {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) throw new Error("Missing GITHUB_TOKEN");
-
-  return await fetch(`${GITHUB_API}${pathname}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/vnd.github+json",
-    },
-    cache: "no-store",
-  });
-}
-
 export async function GET(req: Request) {
   if (!(await requireSession())) return unauthorized();
 
   try {
-    const res = await githubFetch(`/repos/${OWNER}/${REPO}/contents/${DIR_PATH}`);
+    const res = await githubApiFetch(`/repos/${OWNER}/${REPO}/contents/${DIR_PATH}`);
     if (!res.ok) return serverError("Failed to list media files");
 
     const items = await res.json();

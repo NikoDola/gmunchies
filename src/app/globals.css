@@ -298,6 +298,7 @@ label, ::placeholder, select{
   border-radius: 2rem;
   font-size: var(--paragraph-small);
   width: max-content;
+  color: var(--black);
 }
 .afterHeading{
   width: 40%;
