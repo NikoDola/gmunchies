@@ -18,6 +18,10 @@
     ],
     "ctaLabel": "Request Service"
   },
+  "dynamicPages": {
+    "services": true,
+    "locations": false
+  },
   "home": {
     "hero": {
       "headline": "Your Trusted Vending Partner",
