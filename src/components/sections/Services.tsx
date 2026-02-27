@@ -1,5 +1,5 @@
 import "./Services.css";
-import ServiceCard from "./ui/ServiceCard";
+import ServiceCard from "@/components/ui/ServiceCard";
 
 type Service = {
   slug: string;

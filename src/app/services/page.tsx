@@ -1,4 +1,4 @@
-import Services from "@/components/Services";
+import Services from "@/components/sections/Services";
 import { getCmsContent } from "@/lib/content";
 
 export default async function ServicesPage() {

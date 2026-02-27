@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from 'next/font/google';
 import "./globals.css";
-import Navbar from "../components/NavBar";
-import Footer from "../components/Footer";
+import Navbar from "../components/sections/NavBar";
+import Footer from "../components/sections/Footer";
 import { getCmsContent } from "@/lib/content";
-import AdminAwareChrome from "@/components/AdminAwareChrome";
-import Providers from "@/components/Providers";
+import AdminAwareChrome from "@/components/sections/AdminAwareChrome";
+import Providers from "@/components/sections/Providers";
 
 
 // Configure Inter for Body

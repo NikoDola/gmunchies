@@ -1,4 +1,4 @@
-import Locations from "@/components/Locations";
+import Locations from "@/components/sections/Locations";
 import { getCmsContent } from "@/lib/content";
 
 

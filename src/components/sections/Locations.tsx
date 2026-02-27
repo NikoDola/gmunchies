@@ -1,5 +1,5 @@
 import "./Locations.css";
-import LocationCard from "./ui/LocationCard";
+import LocationCard from "@/components/ui/LocationCard";
 import Link from "next/link";
 import { getIconByKey } from "@/lib/iconMap";
 

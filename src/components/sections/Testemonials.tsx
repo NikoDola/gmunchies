@@ -1,7 +1,7 @@
 "use client";
 
 import "./Testimonials.css";
-import TestimonialCard from "./ui/TestimonialCard";
+import TestimonialCard from "@/components/ui/TestimonialCard";
 
 type Testimonial = {
   id: string;

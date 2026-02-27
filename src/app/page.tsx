@@ -1,9 +1,9 @@
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Results from "@/components/Results";
+import Hero from "@/components/sections/Hero";
+import Services from "@/components/sections/Services";
+import Results from "@/components/sections/Results";
 import Form from "@/components/ui/Form";
-import Testomonials from "@/components/Testemonials";
-import Locations from "@/components/Locations";
+import Testomonials from "@/components/sections/Testemonials";
+import Locations from "@/components/sections/Locations";
 import { getCmsContent } from "@/lib/content";
 
 export default async function Home() {
