@@ -2,7 +2,7 @@ import "./Locations.css";
 import LocationCard from "@/components/ui/LocationCard";
 import Link from "next/link";
 import { getIconByKey } from "@/lib/iconMap";
-//quick test
+
 type Location = {
   slug: string;
   name: string;
@@ -17,9 +17,10 @@ type LocationsProps = {
     body?: string;
   };
   locations: Location[];
+  enableLinks?: boolean;
 };
 
-export default function Locations({ intro, locations }: LocationsProps) {
+export default function Locations({ intro, locations, enableLinks = true }: LocationsProps) {
   return (
     <section className="section-full locationSection">
       <div className="section-regular locationContainer">
@@ -30,18 +31,29 @@ export default function Locations({ intro, locations }: LocationsProps) {
         </div>
         <div className="locationGrid">
           {locations.map((location, index) => (
-            <Link
-              key={location.slug}
-              href={`/location/${location.slug}`}
-              className="locationCardLink"
-            >
-              <LocationCard
-                name={location.name}
-                Icon={getIconByKey(location.iconKey)}
-                description={location.description}
-                className={location.slug === "other" ? "centerCard" : ""}
-              />
-            </Link>
+            enableLinks ? (
+              <Link
+                key={location.slug}
+                href={`/location/${location.slug}`}
+                className="locationCardLink"
+              >
+                <LocationCard
+                  name={location.name}
+                  Icon={getIconByKey(location.iconKey)}
+                  description={location.description}
+                  className={location.slug === "other" ? "centerCard" : ""}
+                />
+              </Link>
+            ) : (
+              <div key={location.slug} className="locationCardLink">
+                <LocationCard
+                  name={location.name}
+                  Icon={getIconByKey(location.iconKey)}
+                  description={location.description}
+                  className={location.slug === "other" ? "centerCard" : ""}
+                />
+              </div>
+            )
           ))}
         </div>
       </div>

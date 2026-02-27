@@ -49,6 +49,12 @@ export const cmsSchema = z.object({
     links: z.array(z.object({ label: z.string().min(1), href: z.string().min(1) })),
     ctaLabel: z.string().min(1),
   }),
+  dynamicPages: z
+    .object({
+      services: z.boolean().default(true),
+      locations: z.boolean().default(true),
+    })
+    .default({ services: true, locations: true }),
   home: z.object({
     hero: z.object({
       headline: z.string().min(1),

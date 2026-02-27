@@ -16,9 +16,10 @@ type ServicesProps = {
     body?: string;
   };
   services: Service[];
+  enableLinks?: boolean;
 };
 
-export default function Services({ intro, services }: ServicesProps) {
+export default function Services({ intro, services, enableLinks = true }: ServicesProps) {
   const visible = services.filter((s) => s.display);
   return (
     <section className="section-regular">
@@ -34,7 +35,7 @@ export default function Services({ intro, services }: ServicesProps) {
             img={service.iconSrc}
             headline={service.title}
             bodyText={service.excerpt}
-            href={`/service/${service.slug}`}
+            href={enableLinks ? `/service/${service.slug}` : undefined}
           />
         ))}
       </div>

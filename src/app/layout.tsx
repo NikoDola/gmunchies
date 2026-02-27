@@ -48,6 +48,7 @@ export default async function RootLayout({
               ctaLabel={cms.navbar.ctaLabel}
               services={cms.services}
               locations={cms.locations}
+              dynamicPages={cms.dynamicPages}
             />
           }
           footer={<Footer />}

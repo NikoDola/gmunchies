@@ -16,8 +16,8 @@ export default async function Home() {
         ctaLabel={cms.home.hero.ctaLabel}
         imageSrc={cms.home.hero.imageSrc}
       />
-      <Services intro={cms.home.servicesIntro} services={cms.services} />
-      <Locations intro={cms.home.locationsIntro} locations={cms.locations} />
+      <Services intro={cms.home.servicesIntro} services={cms.services} enableLinks={cms.dynamicPages.services} />
+      <Locations intro={cms.home.locationsIntro} locations={cms.locations} enableLinks={cms.dynamicPages.locations} />
       <Results />
       <Testomonials intro={cms.home.testimonialsIntro} testimonials={cms.testimonials} />
       <Form intro={cms.home.formIntro} services={cms.services} locations={cms.locations} />

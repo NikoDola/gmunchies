@@ -21,6 +21,9 @@ export default function Dashboard() {
   const { data: session, status: sessionStatus } = useSession();
   const [cms, setCms] = useState<CmsContent | null>(null);
   const [status, setStatus] = useState<string | null>(null);
+  const [popup, setPopup] = useState<null | { title: string; body: string; kind: "success" | "error" | "info" }>(
+    null,
+  );
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<EditorMode>("locations");
   const [mediaOpen, setMediaOpen] = useState(false);
@@ -71,47 +74,45 @@ export default function Dashboard() {
           : json.issues
             ? `\n${JSON.stringify(json.issues, null, 2)}`
             : "";
+        const msg = `Error while saving.\n\n${json.error ?? "save failed"}${details}\n\nNeed help? Email niko: nikodola@gmail.com`;
         setStatus(`error: ${json.error ?? "save failed"}${details}`);
+        setPopup({ title: "Save failed", body: msg, kind: "error" });
         return;
       }
       if (json.committed === false) {
+        const msg = `Saved locally only.\n\n${json.warning ?? "GitHub sync disabled"}`;
         setStatus(`saved locally only (warning: ${json.warning ?? "GitHub sync disabled"})`);
+        setPopup({ title: "Saved locally", body: msg, kind: "info" });
         return;
       }
 
       const sha = json.commit?.sha as string | undefined;
       const url = json.commit?.url as string | undefined;
-      setStatus(
-        url
-          ? `saved to GitHub (commit ${sha?.slice(0, 7) ?? "unknown"}). Vercel should auto-deploy. ${url}`
-          : "saved to GitHub. Vercel should auto-deploy in a minute.",
-      );
+      const msg = url
+        ? `Saved to GitHub.\n\nCommit: ${sha?.slice(0, 7) ?? "unknown"}\n${url}\n\nVercel should auto-deploy shortly.`
+        : "Saved to GitHub.\n\nVercel should auto-deploy shortly.";
+      setStatus(url ? `saved to GitHub (${sha?.slice(0, 7) ?? "unknown"}): ${url}` : "saved to GitHub");
+      setPopup({ title: "Saved", body: msg, kind: "success" });
     } catch {
       setStatus("network error");
+      setPopup({
+        title: "Save failed",
+        body: "Network error while saving.\n\nNeed help? Email niko: nikodola@gmail.com",
+        kind: "error",
+      });
     } finally {
       setLoading(false);
     }
   }
 
-  async function checkGithub() {
-    if (loading) return;
-    setLoading(true);
-    setStatus("checking GitHub token...");
-    try {
-      const res = await fetch("/api/admin/github-check", { credentials: "include" });
-      const json = await res.json();
-      if (!res.ok) {
-        const details = json.details ? `\n${JSON.stringify(json.details, null, 2)}` : "";
-        setStatus(`error: ${json.error ?? "GitHub check failed"}${details}`);
-        return;
-      }
-      setStatus(`GitHub OK: ${json.user?.login ?? "unknown"} → ${json.repo?.full_name ?? "repo"} (${json.tokenMeta?.kind ?? "token"})`);
-    } catch {
-      setStatus("error: GitHub check network error");
-    } finally {
-      setLoading(false);
-    }
-  }
+  useEffect(() => {
+    if (!popup) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setPopup(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [popup]);
 
   useEffect(() => {
     if (sessionStatus !== "authenticated") return;
@@ -259,9 +260,6 @@ export default function Dashboard() {
             <button className="adminButton" onClick={load} disabled={loading}>
               {loading ? "Loading..." : "Reload"}
             </button>
-            <button className="adminButton" onClick={checkGithub} disabled={loading}>
-              Check GitHub
-            </button>
           </div>
         </div>
         {status && <p className="adminStatus">{status}</p>}
@@ -272,49 +270,84 @@ export default function Dashboard() {
   return (
     <main className="adminPage adminPageWithTopbar">
       <div className="adminFixedTopbar">
-        <Link href="/" className="adminBackLink">
-          <FiArrowLeft size={18} />
-          <span>Back to website</span>
-        </Link>
+        <div className="adminTopbarRow">
+          <Link href="/" className="adminBackLink">
+            <FiArrowLeft size={18} />
+            <span>Back to website</span>
+          </Link>
+          {session ? (
+            <button className="adminButton" onClick={() => signOut()} disabled={loading}>
+              Sign out
+            </button>
+          ) : null}
+        </div>
 
-        <div className="adminModeSwitch">
-          <button
-            className={`adminButton ${mode === "locations" ? "adminButtonPrimary" : ""}`}
-            onClick={() => setMode("locations")}
-            disabled={loading}
-          >
-            Edit locations
-          </button>
-          <button
-            className={`adminButton ${mode === "services" ? "adminButtonPrimary" : ""}`}
-            onClick={() => setMode("services")}
-            disabled={loading}
-          >
-            Edit services
+        <div className="adminTopbarRow adminTopbarRowBottom">
+          <div className="adminModeSwitch">
+            <button
+              className={`adminButton ${mode === "locations" ? "adminButtonPrimary" : ""}`}
+              onClick={() => setMode("locations")}
+              disabled={loading}
+            >
+              Edit locations
+            </button>
+            <button
+              className={`adminButton ${mode === "services" ? "adminButtonPrimary" : ""}`}
+              onClick={() => setMode("services")}
+              disabled={loading}
+            >
+              Edit services
+            </button>
+          </div>
+
+          <button className="adminButton adminButtonSave" onClick={save} disabled={loading}>
+            {loading ? "Saving..." : "Save"}
           </button>
         </div>
 
-        <div className="adminActions">
-          <button
-            className="adminButton"
-            onClick={mode === "locations" ? addLocation : addService}
-            disabled={loading}
-          >
-            {mode === "locations" ? "Add location" : "Add service"}
-          </button>
-          <button className="adminButton" onClick={load} disabled={loading}>
-            {loading ? "Loading..." : "Reload"}
-          </button>
-          <button className="adminButton" onClick={checkGithub} disabled={loading}>
-            Check GitHub
-          </button>
-          <button className="adminButton adminButtonPrimary" onClick={save} disabled={loading}>
-            {loading ? "Saving..." : "Save"}
-          </button>
+        <div className="adminTopbarRow">
+          <div className="adminActions">
+            <button
+              className="adminButton"
+              onClick={mode === "locations" ? addLocation : addService}
+              disabled={loading}
+            >
+              {mode === "locations" ? "Add location" : "Add service"}
+            </button>
+            <button className="adminButton" onClick={load} disabled={loading}>
+              {loading ? "Loading..." : "Reload"}
+            </button>
+          </div>
         </div>
       </div>
 
       {status && <p className="adminStatus">{status}</p>}
+      {popup ? (
+        <div
+          className="adminPopupOverlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label={popup.title}
+          onClick={() => setPopup(null)}
+        >
+          <div className="adminPopup" onClick={(e) => e.stopPropagation()}>
+            <div className="adminPopupHeader">
+              <strong>{popup.title}</strong>
+              <button className="adminPopupClose" type="button" onClick={() => setPopup(null)} aria-label="Close">
+                ✕
+              </button>
+            </div>
+            <div className="adminPopupBody">
+              {popup.body}
+              {popup.kind === "error" ? (
+                <div style={{ marginTop: "var(--space-10)" }}>
+                  <a href="mailto:nikodola@gmail.com">nikodola@gmail.com</a>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      ) : null}
 
       {mode === "locations" ? (
         <section className="adminSection">
@@ -328,6 +361,7 @@ export default function Dashboard() {
               </summary>
 
               <div className="adminCardBody">
+                <div className="adminSubheading">Hero section</div>
                 <div className="adminRow">
                   <div className="adminField">
                     <label>Slug</label>
@@ -464,6 +498,7 @@ export default function Dashboard() {
                   <div className="blocksList">
                     {loc.blocks.map((b, idx) => (
                       <div key={idx} className="blockItem">
+                        <div className="adminBlockHeader">Section {idx + 1}</div>
                         <div className="adminRow">
                           <div className="adminField">
                             <label>Layout</label>
@@ -537,7 +572,7 @@ export default function Dashboard() {
                           />
                         </div>
 
-                        <div className="adminField">
+                        <div className="adminField adminFieldSectionIcon">
                           <label>Section icon (optional)</label>
                           <div className="blockPreview">
                             {(b as any).iconSrc ? <img src={(b as any).iconSrc} alt="" /> : null}
@@ -640,7 +675,7 @@ export default function Dashboard() {
                 </div>
 
                 <button
-                  className="adminButton adminButtonDanger"
+                  className="adminButton adminButtonDeleteEntity"
                   onClick={() => {
                     if (!confirmDelete("location", loc.name)) return;
                     setCms((prev) => {
@@ -657,6 +692,35 @@ export default function Dashboard() {
               </div>
             </details>
           ))}
+
+          <div className="adminSettingsCard">
+            <div style={{ fontWeight: 800 }}>Dynamic pages</div>
+            <div style={{ opacity: 0.75, marginTop: 6 }}>
+              If disabled, Locations will not appear in the navbar and cards won’t link to /location/[slug].
+            </div>
+            <div className="adminRadioRow">
+              <label className="adminRadio">
+                <input
+                  type="radio"
+                  name="locations-dynamic"
+                  checked={cms.dynamicPages.locations === true}
+                  onChange={() => setCms((prev) => (prev ? { ...prev, dynamicPages: { ...prev.dynamicPages, locations: true } } : prev))}
+                  disabled={loading}
+                />
+                On
+              </label>
+              <label className="adminRadio">
+                <input
+                  type="radio"
+                  name="locations-dynamic"
+                  checked={cms.dynamicPages.locations === false}
+                  onChange={() => setCms((prev) => (prev ? { ...prev, dynamicPages: { ...prev.dynamicPages, locations: false } } : prev))}
+                  disabled={loading}
+                />
+                Off
+              </label>
+            </div>
+          </div>
         </section>
       ) : (
         <section className="adminSection">
@@ -669,6 +733,7 @@ export default function Dashboard() {
                 </div>
               </summary>
               <div className="adminCardBody">
+                <div className="adminSubheading">Hero section</div>
                 <div className="adminRow">
                   <div className="adminField">
                     <label>Slug</label>
@@ -845,6 +910,7 @@ export default function Dashboard() {
                   <div className="blocksList">
                     {srv.blocks.map((b, idx) => (
                       <div key={idx} className="blockItem">
+                        <div className="adminBlockHeader">Section {idx + 1}</div>
                         <div className="adminRow">
                           <div className="adminField">
                             <label>Layout</label>
@@ -918,7 +984,7 @@ export default function Dashboard() {
                           />
                         </div>
 
-                        <div className="adminField">
+                        <div className="adminField adminFieldSectionIcon">
                           <label>Section icon (optional)</label>
                           <div className="blockPreview">
                             {(b as any).iconSrc ? <img src={(b as any).iconSrc} alt="" /> : null}
@@ -1021,7 +1087,7 @@ export default function Dashboard() {
                 </div>
 
                 <button
-                  className="adminButton adminButtonDanger"
+                  className="adminButton adminButtonDeleteEntity"
                   onClick={() => {
                     if (!confirmDelete("service", srv.title)) return;
                     setCms((prev) => {
@@ -1038,6 +1104,35 @@ export default function Dashboard() {
               </div>
             </details>
           ))}
+
+          <div className="adminSettingsCard">
+            <div style={{ fontWeight: 800 }}>Dynamic pages</div>
+            <div style={{ opacity: 0.75, marginTop: 6 }}>
+              If disabled, Services will not appear in the navbar and cards won’t link to /service/[slug].
+            </div>
+            <div className="adminRadioRow">
+              <label className="adminRadio">
+                <input
+                  type="radio"
+                  name="services-dynamic"
+                  checked={cms.dynamicPages.services === true}
+                  onChange={() => setCms((prev) => (prev ? { ...prev, dynamicPages: { ...prev.dynamicPages, services: true } } : prev))}
+                  disabled={loading}
+                />
+                On
+              </label>
+              <label className="adminRadio">
+                <input
+                  type="radio"
+                  name="services-dynamic"
+                  checked={cms.dynamicPages.services === false}
+                  onChange={() => setCms((prev) => (prev ? { ...prev, dynamicPages: { ...prev.dynamicPages, services: false } } : prev))}
+                  disabled={loading}
+                />
+                Off
+              </label>
+            </div>
+          </div>
         </section>
       )}
 

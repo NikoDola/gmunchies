@@ -15,6 +15,7 @@ type NavbarProps = {
   ctaLabel: string;
   services: ServiceOption[];
   locations: LocationOption[];
+  dynamicPages?: { services: boolean; locations: boolean };
 };
 
 export default function Navbar({
@@ -24,8 +25,11 @@ export default function Navbar({
   ctaLabel,
   services,
   locations,
+  dynamicPages,
 }: NavbarProps) {
   const [open, setOpen] = useState(false);
+  const servicesDynamic = dynamicPages?.services ?? true;
+  const locationsDynamic = dynamicPages?.locations ?? true;
 
   useEffect(() => {
     if (open) {
@@ -101,11 +105,21 @@ export default function Navbar({
       
 
       <nav className={`nav-menu ${open ? "open" : ""}`}>
-        {links.map((l) => {
+        {links
+          .filter((l) => !(l.href === "/services" && !servicesDynamic))
+          .filter((l) => !(l.href === "/locations" && !locationsDynamic))
+          .map((l) => {
           const isServices = l.href === "/services";
           const isLocations = l.href === "/locations";
 
           if (isServices) {
+            if (!servicesDynamic) {
+              return (
+                <Link key={l.href} className="navLink" href={l.href} onClick={closeMenu}>
+                  {l.label}
+                </Link>
+              );
+            }
             return (
               <div key={l.href} className="navDropdown">
                 <div className="navDropdownRow">
@@ -147,6 +161,13 @@ export default function Navbar({
           }
 
           if (isLocations) {
+            if (!locationsDynamic) {
+              return (
+                <Link key={l.href} className="navLink" href={l.href} onClick={closeMenu}>
+                  {l.label}
+                </Link>
+              );
+            }
             return (
               <div key={l.href} className="navDropdown">
                 <div className="navDropdownRow">
