@@ -11,6 +11,7 @@ export const contentBlockSchema = z.object({
   eyebrow: z.string().optional().default(""),
   heading: z.string().min(1),
   body: z.string().optional().default(""),
+  iconSrc: z.string().optional().default(""),
   imageSrc: z.string().optional().default(""),
 });
 

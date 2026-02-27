@@ -145,6 +145,7 @@ h6 {
   padding-bottom: var(--space-12);
 }
 
+
 form {
   display: flex;
   flex-direction: column;
@@ -313,6 +314,9 @@ label, ::placeholder, select{
 }
 
 @media (max-width: 1000px){
+  .section-regular {
+    padding: 1rem;
+  }
   .headingWrapper{
    
     padding: 0;

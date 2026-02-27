@@ -1,10 +1,17 @@
 .salHeroWrapper {
   position: relative;
-  height: 80vh;
+  height: auto;
+  aspect-ratio: 3 / 1;
+  max-height: 520px;
   overflow: hidden;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0% 80%);
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.salHeading{
+  text-align: center;
+  margin-top: 4rem;
 }
 
 .salParallaxWrapper {
@@ -28,7 +35,8 @@
 .salCTAWrapper {
   position: relative;
   z-index: 5;
-  height: 80vh;
+  height: 100%;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,6 +75,27 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-16);
+  margin-bottom: 4rem;
+}
+
+.salSectionNav {
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-10);
+}
+
+.salSectionNavGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-8);
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 1000px) {
+  .salSectionNavGrid {
+    grid-template-columns: 2fr 2fr;
+  
+  }
 }
 
 .salBlocks {
@@ -79,6 +108,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-12);
+}
+
+.headingWrapperLeft{
+  text-align: center;
+  margin-bottom: 2rem;
+  .beforeHeading{
+    margin: 0 auto;
+    margin-top: 8rem;
+  }
 }
 
 @keyframes salFade {
@@ -96,6 +134,16 @@
 @media (max-width: 1000px) {
   .salHeroWrapper {
     clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0% 90%);
+    max-height: none;
   }
 }
 
+@media (max-width: 750px) {
+  .salSectionNavGrid{
+    grid-template-columns: 1fr;
+  }
+  .sectionJumpCard{
+    flex-direction: row;
+    background-color: red;
+  }
+}

@@ -26,7 +26,7 @@ export default function Dashboard() {
   const [mediaOpen, setMediaOpen] = useState(false);
   const [media, setMedia] = useState<string[]>([]);
   const [mediaTarget, setMediaTarget] = useState<
-    null | { type: "location" | "service"; slug: string; blockIdx?: number; field: "heroImageSrc" | "imageSrc" | "iconSrc" }
+    null | { type: "location" | "service"; slug: string; blockIdx?: number; field: "heroImageSrc" | "imageSrc" | "iconSrc" | "blockIconSrc" }
   >(null);
 
   async function load() {
@@ -171,6 +171,9 @@ export default function Dashboard() {
         if (!loc) return next;
         if (mediaTarget.field === "heroImageSrc") {
           loc.heroImageSrc = path;
+        } else if (mediaTarget.field === "blockIconSrc") {
+          const idx = mediaTarget.blockIdx ?? -1;
+          if (idx >= 0 && loc.blocks[idx]) (loc.blocks[idx] as any).iconSrc = path;
         } else if (mediaTarget.field === "imageSrc") {
           const idx = mediaTarget.blockIdx ?? -1;
           if (idx >= 0 && loc.blocks[idx]) loc.blocks[idx].imageSrc = path;
@@ -182,6 +185,9 @@ export default function Dashboard() {
           srv.heroImageSrc = path;
         } else if (mediaTarget.field === "iconSrc") {
           srv.iconSrc = path;
+        } else if (mediaTarget.field === "blockIconSrc") {
+          const idx = mediaTarget.blockIdx ?? -1;
+          if (idx >= 0 && srv.blocks[idx]) (srv.blocks[idx] as any).iconSrc = path;
         } else {
           const idx = mediaTarget.blockIdx ?? -1;
           if (idx >= 0 && srv.blocks[idx]) srv.blocks[idx].imageSrc = path;
@@ -445,7 +451,7 @@ export default function Dashboard() {
                           const next = deepClone(prev);
                           const target = next.locations.find((l) => l.slug === loc.slug);
                           if (!target) return next;
-                          target.blocks.push({ layout: "left", eyebrow: "", heading: "New block", body: "", imageSrc: "" });
+                          target.blocks.push({ layout: "left", eyebrow: "", heading: "New block", body: "", iconSrc: "", imageSrc: "" });
                           return next;
                         })
                       }
@@ -529,6 +535,55 @@ export default function Dashboard() {
                             }
                             disabled={loading}
                           />
+                        </div>
+
+                        <div className="adminField">
+                          <label>Section icon (optional)</label>
+                          <div className="blockPreview">
+                            {(b as any).iconSrc ? <img src={(b as any).iconSrc} alt="" /> : null}
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={async (e) => {
+                                const file = e.target.files?.[0];
+                                if (!file) return;
+                                const path = await uploadFile(file);
+                                if (!path) return;
+                                setCms((prev) => {
+                                  if (!prev) return prev;
+                                  const next = deepClone(prev);
+                                  const target = next.locations.find((l) => l.slug === loc.slug);
+                                  if (target) (target.blocks[idx] as any).iconSrc = path;
+                                  return next;
+                                });
+                              }}
+                              disabled={loading}
+                            />
+                            <button
+                              className="adminButton"
+                              type="button"
+                              onClick={() =>
+                                openMediaPicker({ type: "location", slug: loc.slug, field: "blockIconSrc", blockIdx: idx })
+                              }
+                              disabled={loading}
+                            >
+                              Add icon from media
+                            </button>
+                            <input
+                              value={(b as any).iconSrc ?? ""}
+                              onChange={(e) =>
+                                setCms((prev) => {
+                                  if (!prev) return prev;
+                                  const next = deepClone(prev);
+                                  const target = next.locations.find((l) => l.slug === loc.slug);
+                                  if (target) (target.blocks[idx] as any).iconSrc = e.target.value;
+                                  return next;
+                                })
+                              }
+                              disabled={loading}
+                              placeholder="/uploads/your-icon.png"
+                            />
+                          </div>
                         </div>
 
                         <div className="adminField">
@@ -777,7 +832,7 @@ export default function Dashboard() {
                           const next = deepClone(prev);
                           const target = next.services.find((s) => s.slug === srv.slug);
                           if (!target) return next;
-                          target.blocks.push({ layout: "left", eyebrow: "", heading: "New block", body: "", imageSrc: "" });
+                          target.blocks.push({ layout: "left", eyebrow: "", heading: "New block", body: "", iconSrc: "", imageSrc: "" });
                           return next;
                         })
                       }
@@ -861,6 +916,55 @@ export default function Dashboard() {
                             }
                             disabled={loading}
                           />
+                        </div>
+
+                        <div className="adminField">
+                          <label>Section icon (optional)</label>
+                          <div className="blockPreview">
+                            {(b as any).iconSrc ? <img src={(b as any).iconSrc} alt="" /> : null}
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={async (e) => {
+                                const file = e.target.files?.[0];
+                                if (!file) return;
+                                const path = await uploadFile(file);
+                                if (!path) return;
+                                setCms((prev) => {
+                                  if (!prev) return prev;
+                                  const next = deepClone(prev);
+                                  const target = next.services.find((s) => s.slug === srv.slug);
+                                  if (target) (target.blocks[idx] as any).iconSrc = path;
+                                  return next;
+                                });
+                              }}
+                              disabled={loading}
+                            />
+                            <button
+                              className="adminButton"
+                              type="button"
+                              onClick={() =>
+                                openMediaPicker({ type: "service", slug: srv.slug, field: "blockIconSrc", blockIdx: idx })
+                              }
+                              disabled={loading}
+                            >
+                              Add icon from media
+                            </button>
+                            <input
+                              value={(b as any).iconSrc ?? ""}
+                              onChange={(e) =>
+                                setCms((prev) => {
+                                  if (!prev) return prev;
+                                  const next = deepClone(prev);
+                                  const target = next.services.find((s) => s.slug === srv.slug);
+                                  if (target) (target.blocks[idx] as any).iconSrc = e.target.value;
+                                  return next;
+                                })
+                              }
+                              disabled={loading}
+                              placeholder="/uploads/your-icon.png"
+                            />
+                          </div>
                         </div>
 
                         <div className="adminField">

@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#eyeball {
+  width: 200px;
+  height: 200px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+#pupil {
+  width: 60px;
+  height: 60px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#lineLayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 3;
+}

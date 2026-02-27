@@ -18,6 +18,7 @@ export default async function LocationPage({
   return (
     <SAL
       kind="location"
+      slug={slug}
       eyebrow="location"
       title={location.name}
       description={location.description}

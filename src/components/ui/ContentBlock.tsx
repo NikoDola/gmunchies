@@ -1,19 +1,32 @@
+"use client";
+
 import "./ContentBlock.css";
 import Image from "next/image";
+import { useState } from "react";
 
 export type ContentBlockData = {
   layout: "left" | "right" | "center";
   eyebrow?: string;
   heading: string;
   body?: string;
+  iconSrc?: string;
   imageSrc?: string;
 };
 
-export default function ContentBlock({ layout, eyebrow, heading, body, imageSrc }: ContentBlockData) {
+export default function ContentBlock({
+  anchorId,
+  layout,
+  eyebrow,
+  heading,
+  body,
+  imageSrc,
+}: ContentBlockData & { anchorId?: string }) {
   const hasImage = Boolean(imageSrc);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <section className={`contentBlock contentBlock--${layout}`}>
+    <section id={anchorId} className={`contentBlock contentBlock--${layout}`}>
+  
       <div className="contentBlockInner">
         <div className="contentBlockText">
           {eyebrow ? <p className="beforeHeading">{eyebrow}</p> : null}
@@ -23,13 +36,20 @@ export default function ContentBlock({ layout, eyebrow, heading, body, imageSrc 
 
         {hasImage ? (
           <div className="contentBlockMedia" aria-hidden={!hasImage}>
-            <Image
-              src={imageSrc!}
-              alt={heading}
-              width={900}
-              height={600}
-              className="contentBlockImage"
-            />
+            <div className="contentBlockMediaFrame">
+              <div
+                className={`contentBlockMediaParallax ${isLoaded ? "loaded" : ""}`}
+              >
+                <Image
+                  src={imageSrc!}
+                  alt={heading}
+                  fill
+                  className="contentBlockImage"
+                  sizes="(max-width: 1000px) 100vw, 50vw"
+                  onLoadingComplete={() => setIsLoaded(true)}
+                />
+              </div>
+            </div>
           </div>
         ) : null}
       </div>

@@ -58,23 +58,26 @@
         {
           "layout": "left",
           "eyebrow": "modern solutions",
-          "heading": "Snacks your team will love",
-          "body": "Fresh selection, smart inventory support, and reliable machines that look great in your space.",
-          "imageSrc": "/uploads/hero.webp"
+          "heading": "Snack Vending ",
+          "body": "Bring convenience directly to your location with professionally managed snack vending machines designed to keep people satisfied throughout the day. G Munchies provides modern, reliable machines stocked with a wide selection of popular snacks, healthier choices, and customer favorites.\n\nWe handle everything from delivery and installation to regular restocking and maintenance. No cost to your business. No hassle. Just a clean, fully serviced vending solution that keeps your employees, guests, or customers happy and energized.",
+          "iconSrc": "/uploads/1771947434993-icon_vending.svg",
+          "imageSrc": "/uploads/1771954203757-chatgpt-image-feb-24-2026-06_26_31-pm.png"
         },
         {
           "layout": "right",
           "eyebrow": "product mix",
-          "heading": "A lineup that matches your team",
-          "body": "We stock best sellers and can add better-for-you options based on your preferences and usage trends.",
-          "imageSrc": "/uploads/cart1.png"
+          "heading": "Drink Vending",
+          "body": "Keep your location refreshed with professionally managed drink vending machines from G Munchies. We provide modern, energy-efficient machines stocked with a wide range of cold beverages, from soft drinks and sparkling water to juices and healthier options.\nOur team takes care of delivery, installation, restocking, and maintenance, ensuring your machine stays clean, fully stocked, and running smoothly. With cashless payment options and consistent service, your employees and customers get quick, reliable access to the drinks they want, anytime.",
+          "iconSrc": "/uploads/icon_micro-market.svg",
+          "imageSrc": "/uploads/1771962680895-827202fa-f57c-48b1-b798-74da459db0cc.png"
         },
         {
           "layout": "center",
           "eyebrow": "service included",
-          "heading": "We handle everything end-to-end",
-          "body": "Installation, restocking, and maintenance are included—so you get the benefit without the hassle.",
-          "imageSrc": "/uploads/hero.webp"
+          "heading": "Combo Vending",
+          "body": "A smart solution for high-traffic locations.\n\nWith both snacks and beverages available in one reliable unit, our combo vending service delivers convenience and value in a compact footprint. Modern payment systems, energy-efficient operation, and consistent service make it easy to provide food and drinks without added work for your team.\n\nG Munchies keeps everything filled, fresh, and functioning so your people always have access to what they need.",
+          "iconSrc": "/uploads/icon_snack-vending-machines.svg",
+          "imageSrc": "/uploads/1771962717246-2bbceba4-4ef3-4b16-b458-dd73b78070eb-1-.png"
         }
       ]
     },
@@ -83,14 +86,15 @@
       "display": true,
       "iconSrc": "/uploads/1771947479788-icon_coffee.svg",
       "title": "Coffee",
-      "excerpt": "Cold beverages, energy drinks, and bottled water with fast cooling and smooth dispensing.",
-      "heroImageSrc": "/uploads/hero.webp",
+      "excerpt": "Fresh, hot coffee available anytime. Perfect for offices and busy spaces.",
+      "heroImageSrc": "/uploads/1771963231278-basically-coffee-0219-03-copy.webp",
       "blocks": [
         {
           "layout": "right",
           "eyebrow": "refreshments",
           "heading": "Always cold, always stocked",
           "body": "We keep popular drinks available with consistent service and fast response when needed.",
+          "iconSrc": "",
           "imageSrc": "/uploads/hero.webp"
         },
         {
@@ -98,6 +102,7 @@
           "eyebrow": "variety",
           "heading": "Water, energy, and favorites",
           "body": "Bottled water, sodas, energy drinks, and more—optimized for your location and traffic patterns.",
+          "iconSrc": "",
           "imageSrc": "/uploads/cart1.png"
         },
         {
@@ -105,6 +110,7 @@
           "eyebrow": "cashless ready",
           "heading": "Tap-to-pay for faster checkout",
           "body": "Contactless payments help increase usage and reduce the need for cash handling.",
+          "iconSrc": "",
           "imageSrc": "/uploads/hero.webp"
         }
       ]
@@ -122,6 +128,7 @@
           "eyebrow": "all-in-one",
           "heading": "More variety in less space",
           "body": "One machine, two categories, easy to maintain and perfect for smaller locations.",
+          "iconSrc": "",
           "imageSrc": "/uploads/hero.webp"
         },
         {
@@ -129,6 +136,7 @@
           "eyebrow": "ideal fit",
           "heading": "Perfect for compact areas",
           "body": "Get snack and drink choices without needing multiple machines—great for offices, gyms, and smaller breakrooms.",
+          "iconSrc": "",
           "imageSrc": "/uploads/cart1.png"
         },
         {
@@ -136,6 +144,7 @@
           "eyebrow": "managed service",
           "heading": "Stocking and maintenance included",
           "body": "We keep the machine filled and running, so your team gets consistent access to what they want.",
+          "iconSrc": "",
           "imageSrc": "/uploads/hero.webp"
         }
       ]
@@ -154,6 +163,7 @@
           "eyebrow": "office friendly",
           "heading": "Boost productivity with on-site refreshments",
           "body": "Keep teams energized with snacks and drinks just steps away. We handle installation, restocking, and support so your breakroom stays ready every day.",
+          "iconSrc": "",
           "imageSrc": "/uploads/cart1.png"
         },
         {
@@ -161,6 +171,7 @@
           "eyebrow": "smart service",
           "heading": "Reliable restocks and fast support",
           "body": "Our routes and monitoring help reduce out-of-stocks. When you need help, we respond quickly so downtime stays minimal.",
+          "iconSrc": "",
           "imageSrc": "/uploads/hero.webp"
         }
       ]
@@ -177,6 +188,7 @@
           "eyebrow": "resident convenience",
           "heading": "Amenities that residents actually use",
           "body": "Add a simple, high-value amenity that works 24/7. Great for lobbies, common areas, and fitness rooms.",
+          "iconSrc": "",
           "imageSrc": "/uploads/cart1.png"
         },
         {
@@ -184,6 +196,7 @@
           "eyebrow": "clean setup",
           "heading": "Professional installation and maintenance",
           "body": "We install with minimal disruption and keep machines clean, stocked, and functioning properly.",
+          "iconSrc": "",
           "imageSrc": "/uploads/hero.webp"
         }
       ]
@@ -200,6 +213,7 @@
           "eyebrow": "built for shifts",
           "heading": "Keep teams fueled during long shifts",
           "body": "Fast access to snacks and drinks reduces breaks off-site and keeps operations moving.",
+          "iconSrc": "",
           "imageSrc": "/uploads/cart1.png"
         },
         {
@@ -207,6 +221,7 @@
           "eyebrow": "high usage",
           "heading": "Stocked for peak demand",
           "body": "We tailor product mix and service frequency to match your headcount and shift schedule.",
+          "iconSrc": "",
           "imageSrc": "/uploads/hero.webp"
         }
       ]
@@ -223,6 +238,7 @@
           "eyebrow": "fitness focused",
           "heading": "Healthy options your members want",
           "body": "Protein bars, electrolyte drinks, and better-for-you snacks—optimized for the gym environment.",
+          "iconSrc": "",
           "imageSrc": "/uploads/cart1.png"
         },
         {
@@ -230,6 +246,7 @@
           "eyebrow": "simple operations",
           "heading": "We manage the details",
           "body": "We keep inventory fresh, handle maintenance, and support cashless payments so it just works.",
+          "iconSrc": "",
           "imageSrc": "/uploads/hero.webp"
         }
       ]
@@ -246,6 +263,7 @@
           "eyebrow": "always available",
           "heading": "24/7 access for staff and visitors",
           "body": "Healthcare never stops. We provide reliable vending solutions that support late-night staff and visiting families.",
+          "iconSrc": "",
           "imageSrc": "/uploads/cart1.png"
         },
         {
@@ -253,6 +271,7 @@
           "eyebrow": "contactless",
           "heading": "Fast, modern payments",
           "body": "Tap-to-pay and mobile wallets reduce friction and speed up purchases in busy areas.",
+          "iconSrc": "",
           "imageSrc": "/uploads/hero.webp"
         }
       ]
@@ -269,6 +288,7 @@
           "eyebrow": "campus ready",
           "heading": "Reliable vending for high-traffic areas",
           "body": "From libraries to dorm common areas, we keep popular items available and machines running smoothly.",
+          "iconSrc": "",
           "imageSrc": "/uploads/cart1.png"
         },
         {
@@ -276,6 +296,7 @@
           "eyebrow": "variety",
           "heading": "Mix of classics and better options",
           "body": "We balance top sellers with healthier items to match your campus preferences and guidelines.",
+          "iconSrc": "",
           "imageSrc": "/uploads/hero.webp"
         }
       ]
@@ -292,6 +313,7 @@
           "eyebrow": "custom fit",
           "heading": "Tailored to your space and needs",
           "body": "Tell us about your location and we’ll recommend the right machines, product mix, and service frequency.",
+          "iconSrc": "",
           "imageSrc": "/uploads/cart1.png"
         }
       ]

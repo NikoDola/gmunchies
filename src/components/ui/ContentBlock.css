@@ -1,5 +1,6 @@
 .contentBlock {
   width: 100%;
+  margin-top: 4rem;
 }
 
 .contentBlockInner {
@@ -24,17 +25,34 @@
   margin: 0;
   color: var(--black);
   opacity: 0.8;
+  
 }
 
 .contentBlockMedia {
   width: 100%;
 }
 
-.contentBlockImage {
+.contentBlockMediaFrame {
+  position: relative;
   width: 100%;
-  height: auto;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
   border-radius: 1.25rem;
-  outline: 1px solid rgba(0, 0, 0, 0.08);
+
+box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+
+
+.contentBlockMediaParallax.loaded {
+  opacity: 1;
+}
+
+.contentBlockImage {
+  object-fit: cover;
+  object-position: center;
+  background-repeat: no-repeat;
+   box-shadow: 5px 10px #888888;
 }
 
 /* Layouts */
@@ -44,6 +62,12 @@
 
 .contentBlock--right .contentBlockInner {
   flex-direction: row-reverse;
+}
+
+.contentBlock--left .contentBlockText {
+  /* Text on the left: align toward the image (right) */
+  align-items: flex-end;
+  text-align: right;
 }
 
 .contentBlock--left .contentBlockText,
@@ -72,6 +96,13 @@
 }
 
 @media (max-width: 1000px) {
+  /* On mobile: ignore left/right layouts and stack consistently */
+  .contentBlock--left .contentBlockInner,
+  .contentBlock--right .contentBlockInner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .contentBlockInner {
     flex-direction: column;
     align-items: stretch;
@@ -79,7 +110,14 @@
 
   .contentBlockText {
     align-items: flex-start;
-    text-align: left;
+    text-align: center;
+  }
+  .contentBlockHeading{
+    text-align: center;
+    width: 100%;
+  }
+  .beforeHeading{
+    margin: 0 auto;
   }
 
   .contentBlock--center .contentBlockInner {
@@ -88,6 +126,9 @@
 
   .contentBlock--center .contentBlockText {
     align-items: center;
+    text-align: center;
+  }
+  .contentBlockBody{
     text-align: center;
   }
 }

@@ -17,6 +17,7 @@ export default async function ServicePage({
   return (
     <SAL
       kind="service"
+      slug={slug}
       eyebrow="service"
       title={service.title}
       description={service.excerpt}
