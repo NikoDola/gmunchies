@@ -52,7 +52,7 @@
   },
   "services": [
     {
-      "slug": "vending.",
+      "slug": "vending",
       "display": true,
       "iconSrc": "/uploads/1771947434993-icon_vending.svg",
       "title": "Vending",
