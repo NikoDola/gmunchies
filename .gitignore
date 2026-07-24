@@ -34,7 +34,7 @@ yarn-error.log*
 .env*
 !.env.example
 
-# keys & archives — never commit
+# keys & archives, never commit
 *.key
 *.pem
 id_*
@@ -44,10 +44,6 @@ github_actions*
 *.zip
 *.rar
 *.7z
-
-# Claude / AI working files — internal, keep out of the public repo
-CLAUDE.md
-Claude-to-do.md
 
 # vercel
 .vercel

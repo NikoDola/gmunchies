@@ -35,7 +35,7 @@ export default function Navbar({
   const locationsDynamic = dynamicPages?.locations ?? true;
   const testimonialsDynamic = dynamicPages?.testimonials ?? true;
 
-  // On contact pages there's no form on the page — navigate to the home form instead.
+  // On contact pages there's no form on the page, so navigate to the home form instead.
   const isContactRoute = /^\/contact(?:-us)?(?:\/|$)/.test(pathname ?? "");
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function Navbar({
   const scrollToForm = () => {
     setOpen(false);
 
-    // On contact routes the form doesn't exist on the page — go to the home form.
+    // On contact routes the form doesn't exist on the page, so go to the home form.
     if (isContactRoute) {
       router.push("/#request-services-form");
       return;

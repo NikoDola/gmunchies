@@ -1,8 +1,8 @@
-# GMunchies Vending — Marketing Site + Git-backed CMS 🍫🥤
+# GMunchies Vending: Marketing Site + Git-backed CMS 🍫🥤
 
 A full-stack marketing website with a custom admin CMS, built for **GMunchies**, a vending solutions company (vending machines, office coffee, and micro-markets). Shared here as a portfolio case study.
 
-The interesting part isn't the marketing pages — it's that the whole site is content-managed **without a database or a third-party CMS**. The admin dashboard commits content and images straight to a GitHub repo, and the deploy platform rebuilds from that commit.
+The interesting part isn't the marketing pages, it's that the whole site is content-managed **without a database or a third-party CMS**. The admin dashboard commits content and images straight to a GitHub repo, and the deploy platform rebuilds from that commit.
 
 **Live site:** https://www.gmunchiesvending.com
 
@@ -14,14 +14,14 @@ The interesting part isn't the marketing pages — it's that the whole site is c
 
 ## ✨ Highlights
 
-- **GitHub-as-CMS** — a custom admin dashboard commits `data.json` + uploaded images to a GitHub repo via the GitHub API. No database, no Contentful/Sanity.
-- **Zero-setup demo mode** — `CMS_LOCAL_ONLY=1` runs the entire admin panel against a local JSON file, so you can try the full CMS with no GitHub token or OAuth app (see [Getting started](#-getting-started)).
-- **Google-OAuth admin** — sign-in restricted to an email allowlist; no passwords stored.
-- **Dynamic, content-driven pages** — services and locations render from CMS data with their own detail pages, and can be toggled on/off.
-- **Type-safe content** — every CMS read/write is validated with a Zod schema, so malformed content can't reach the site.
-- **Server-side contact form** — Zod-validated and sent via EmailJS from the server (no keys shipped to the browser).
-- **SEO plumbing** — `sitemap.xml`, `robots.txt`, and JSON-LD structured data.
-- **No CSS framework** — every component ships its own hand-written CSS.
+- **GitHub-as-CMS**: a custom admin dashboard commits `data.json` + uploaded images to a GitHub repo via the GitHub API. No database, no Contentful/Sanity.
+- **Zero-setup demo mode**: `CMS_LOCAL_ONLY=1` runs the entire admin panel against a local JSON file, so you can try the full CMS with no GitHub token or OAuth app (see [Getting started](#-getting-started)).
+- **Google-OAuth admin**: sign-in restricted to an email allowlist; no passwords stored.
+- **Dynamic, content-driven pages**: services and locations render from CMS data with their own detail pages, and can be toggled on/off.
+- **Type-safe content**: every CMS read/write is validated with a Zod schema, so malformed content can't reach the site.
+- **Server-side contact form**: Zod-validated and sent via EmailJS from the server (no keys shipped to the browser).
+- **SEO plumbing**: `sitemap.xml`, `robots.txt`, and JSON-LD structured data.
+- **No CSS framework**: every component ships its own hand-written CSS.
 
 ---
 
@@ -41,11 +41,11 @@ flowchart LR
 ```
 
 Why this is nice:
-- **The repo is the single source of truth** — content is versioned, diffable, and revertable with plain Git.
+- **The repo is the single source of truth**: content is versioned, diffable, and revertable with plain Git.
 - **No database to run, secure, or pay for.**
-- **Preview & rollback for free** — every content change is a commit.
+- **Preview & rollback for free**: every content change is a commit.
 
-The GitHub target is configured with one env var (`GITHUB_REPO="owner/name"`), resolved in [`src/lib/github.ts`](src/lib/github.ts). In local/demo mode the same admin UI writes to disk instead — see below.
+The GitHub target is configured with one env var (`GITHUB_REPO="owner/name"`), resolved in [`src/lib/github.ts`](src/lib/github.ts). In local/demo mode the same admin UI writes to disk instead (see below).
 
 ---
 
@@ -89,7 +89,7 @@ npm run lint     # ESLint (currently clean)
 src/
 ├── app/                  # App Router routes (thin wrappers → featured/pages)
 │   └── api/
-│       ├── admin/        # CMS read/write, upload, media — session-protected
+│       ├── admin/        # CMS read/write, upload, media (session-protected)
 │       ├── auth/         # NextAuth (Google)
 │       └── contact/      # Zod-validated → EmailJS (server-side)
 ├── components/
@@ -110,10 +110,10 @@ src/
 
 ## 🔐 A few deliberate decisions
 
-- **Admin auth is Google-OAuth + allowlist only** — no username/password to leak. Access is granted purely by verified email membership in `ADMIN_EMAILS`.
+- **Admin auth is Google-OAuth + allowlist only**: no username/password to leak. Access is granted purely by verified email membership in `ADMIN_EMAILS`.
 - **EmailJS runs server-side.** The API route forwards the browser's `Origin` header so EmailJS accepts the request, keeping the keys off the client.
 - **Security headers** (CSP, HSTS, etc.) are set in `next.config.ts`.
-- **Hand-written CSS per component** rather than a utility framework — a deliberate choice, kept consistent across the app.
+- **Hand-written CSS per component** rather than a utility framework, a deliberate choice kept consistent across the app.
 
 ---
 
@@ -121,7 +121,7 @@ src/
 
 Deploys to **Vercel** (zero-config for Next.js). Set the same variables from `.env.example` in the Vercel project settings, point `NEXTAUTH_URL` at the production URL, and add `{NEXTAUTH_URL}/api/auth/callback/google` to the Google OAuth authorized redirect URIs.
 
-> Note: GitHub Pages can't host this — it needs a Node server for the API routes, auth, and dynamic pages.
+> Note: GitHub Pages can't host this, since it needs a Node server for the API routes, auth, and dynamic pages.
 
 ---
 

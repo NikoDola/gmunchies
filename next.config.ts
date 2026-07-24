@@ -10,7 +10,7 @@ const csp = [
   // Google Maps embed iframe (contact page)
   "frame-src https://www.google.com https://maps.google.com",
   "connect-src 'self'",
-  // next/font/google self-hosts fonts — no external font domain needed
+  // next/font/google self-hosts fonts, no external font domain needed
   "font-src 'self'",
   "object-src 'none'",
   "base-uri 'self'",

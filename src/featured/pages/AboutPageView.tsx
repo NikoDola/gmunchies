@@ -60,7 +60,7 @@ export default function AboutPageView({
         </div>
       </section>
 
-      {/* Content — same gray as home AboutPreview so it divides from request services (white) below */}
+      {/* Content section: same gray as home AboutPreview so it divides from request services (white) below */}
       <section className="section-full aboutContentWrapper">
         <div className="section-regular aboutContentSection">
           <div className="aboutContent">

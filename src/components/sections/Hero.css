@@ -48,7 +48,7 @@
   animation: heroCircleFloat 5s ease-in-out infinite;
 }
 
-/* ── Mascot image — no animation, stays still ── */
+/* Mascot image: no animation, stays still */
 .heroMascotImg {
   position: relative;
   z-index: 1;
@@ -63,7 +63,7 @@
   100% { transform: translate(0%,   0%); }
 }
 
-/* ── CTA text overlay — no dark overlay needed now ── */
+/* CTA text overlay: no dark overlay needed now */
 .CTA_Wrapper {
   position: relative;
   z-index: 5;
