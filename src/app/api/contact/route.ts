@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import nodemailer from "nodemailer";
+import { renderContactEmail, renderContactEmailText, type ContactEmailParams } from "@/lib/contactEmail";
 
 export const runtime = "nodejs";
 
@@ -15,72 +17,36 @@ const contactSchema = z.object({
   source: z.enum(["request-service", "contact-us"]).optional().default("request-service"),
 });
 
-async function sendViaEmailJs(
-  params: {
-    name: string;
-    lastName: string;
-    company: string;
-    email: string;
-    phone: string;
-    service: string;
-    location: string;
-    description: string;
-    source: "request-service" | "contact-us";
-  },
-  origin: string
-) {
-  // Accept both naming conventions (with or without NEXT_PUBLIC_ prefix)
-  const serviceId = process.env.EMAILJS_SERVICE_ID ?? process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-  const templateId = process.env.EMAILJS_TEMPLATE_ID ?? process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-  const publicKey = process.env.EMAILJS_PUBLIC_KEY ?? process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-  const privateKey = process.env.EMAILJS_PRIVATE_KEY ?? process.env.NEXT_PUBLIC_EMAILJS_PRIVATE_KEY;
+async function sendViaGmail(params: ContactEmailParams) {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+  // Where inquiries land; defaults to the sending account itself.
+  const to = process.env.CONTACT_TO || user;
 
-  if (!serviceId || !templateId || !publicKey) {
-    throw new Error("EmailJS is not configured (missing EMAILJS env vars on server)");
+  if (!user || !pass) {
+    throw new Error("Email is not configured (missing GMAIL_USER / GMAIL_APP_PASSWORD on server)");
   }
 
-  const payload = {
-    service_id: serviceId,
-    template_id: templateId,
-    user_id: publicKey,
-    ...(privateKey ? { accessToken: privateKey } : {}),
-    template_params: {
-      subject:
-        params.source === "contact-us"
-          ? `GMunchies: New contact-us inquiry from ${params.name}${params.lastName ? ` ${params.lastName}` : ""}`
-          : `GMunchies: New service request from ${params.name}`,
-      name: params.name,
-      last_name: params.lastName || "-",
-      full_name: `${params.name}${params.lastName ? ` ${params.lastName}` : ""}`,
-      company: params.company || "-",
-      email: params.email,
-      phone: params.phone || "-",
-      service: params.service || "-",
-      location: params.location || "-",
-      message:
-        params.source === "contact-us"
-          ? `[SOURCE: CONTACT-US]\n${params.description}`
-          : params.description,
-      source: params.source,
-      reply_to: params.email,
-    },
-  };
-
-  const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      // Forward the browser's Origin so EmailJS accepts the request
-      "Origin": origin,
-    },
-    body: JSON.stringify(payload),
-    cache: "no-store",
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: { user, pass },
   });
 
-  if (!res.ok) {
-    const body = await res.text().catch(() => "");
-    throw new Error(`EmailJS failed (${res.status} ${res.statusText})${body ? `: ${body}` : ""}`);
-  }
+  const subject =
+    params.source === "contact-us"
+      ? `GMunchies: New contact-us inquiry from ${params.name}${params.lastName ? ` ${params.lastName}` : ""}`
+      : `GMunchies: New service request from ${params.name}`;
+
+  await transporter.sendMail({
+    from: `"GMunchies Website" <${user}>`,
+    to,
+    replyTo: params.email,
+    subject,
+    text: renderContactEmailText(params),
+    html: renderContactEmail(params),
+  });
 }
 
 export async function POST(req: Request) {
@@ -91,25 +57,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Validation error", issues: parsed.error.issues }, { status: 400 });
     }
 
-    const origin =
-      req.headers.get("origin") ??
-      req.headers.get("referer")?.match(/^(https?:\/\/[^/]+)/)?.[1] ??
-      "";
-
-    await sendViaEmailJs(
-      {
-        name: parsed.data.name,
-        lastName: parsed.data.lastName,
-        company: parsed.data.company,
-        email: parsed.data.email,
-        phone: parsed.data.phone,
-        service: parsed.data.service,
-        location: parsed.data.location,
-        description: parsed.data.description,
-        source: parsed.data.source,
-      },
-      origin
-    );
+    await sendViaGmail(parsed.data);
 
     return NextResponse.json({ ok: true });
   } catch (e) {

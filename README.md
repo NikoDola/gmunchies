@@ -6,7 +6,7 @@ The interesting part isn't the marketing pages, it's that the whole site is cont
 
 **Live site:** https://www.gmunchiesvending.com
 
-> **Tech:** Next.js 16 · React 19 · TypeScript (strict) · NextAuth (Google OAuth) · Zod · EmailJS · hand-written CSS · Vercel
+> **Tech:** Next.js 16 · React 19 · TypeScript (strict) · NextAuth (Google OAuth) · Zod · Nodemailer · hand-written CSS · Vercel
 
 <!-- Add a screenshot or GIF here, e.g. ![Home page](docs/screenshot-home.png) -->
 
@@ -19,7 +19,7 @@ The interesting part isn't the marketing pages, it's that the whole site is cont
 - **Google-OAuth admin**: sign-in restricted to an email allowlist; no passwords stored.
 - **Dynamic, content-driven pages**: services and locations render from CMS data with their own detail pages, and can be toggled on/off.
 - **Type-safe content**: every CMS read/write is validated with a Zod schema, so malformed content can't reach the site.
-- **Server-side contact form**: Zod-validated and sent via EmailJS from the server (no keys shipped to the browser).
+- **Server-side contact form**: Zod-validated, then sent as a branded HTML email over Gmail SMTP with Nodemailer (no keys shipped to the browser, no third-party form service).
 - **SEO plumbing**: `sitemap.xml`, `robots.txt`, and JSON-LD structured data.
 - **No CSS framework**: every component ships its own hand-written CSS.
 
@@ -71,7 +71,7 @@ ADMIN_EMAILS=you@example.com
 # ...plus Google OAuth vars if you want to actually log in to /admin
 ```
 
-For the full GitHub-backed setup (token, repo target, EmailJS), see the comments in [`.env.example`](.env.example).
+For the full GitHub-backed setup (token, repo target, Gmail SMTP), see the comments in [`.env.example`](.env.example).
 
 ### Scripts
 
@@ -91,7 +91,7 @@ src/
 │   └── api/
 │       ├── admin/        # CMS read/write, upload, media (session-protected)
 │       ├── auth/         # NextAuth (Google)
-│       └── contact/      # Zod-validated → EmailJS (server-side)
+│       └── contact/      # Zod-validated → Gmail SMTP (server-side)
 ├── components/
 │   ├── sections/         # Page sections (Hero, NavBar, Footer, …)
 │   └── ui/               # Reusable primitives (cards, form fields, …)
@@ -111,7 +111,7 @@ src/
 ## 🔐 A few deliberate decisions
 
 - **Admin auth is Google-OAuth + allowlist only**: no username/password to leak. Access is granted purely by verified email membership in `ADMIN_EMAILS`.
-- **EmailJS runs server-side.** The API route forwards the browser's `Origin` header so EmailJS accepts the request, keeping the keys off the client.
+- **Email goes out over plain SMTP.** The contact route renders a branded HTML template and sends it through a Gmail App Password with Nodemailer, so there is no form-service dependency and no credentials in the client bundle. `replyTo` is set to the submitter, so replying from the inbox just works.
 - **Security headers** (CSP, HSTS, etc.) are set in `next.config.ts`.
 - **Hand-written CSS per component** rather than a utility framework, a deliberate choice kept consistent across the app.
 
