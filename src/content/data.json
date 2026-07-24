@@ -1,0 +1,508 @@
+{
+  "navbar": {
+    "logoSrc": "/branding/logo.svg",
+    "logoHref": "/",
+    "links": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Services",
+        "href": "/services"
+      },
+      {
+        "label": "Locations",
+        "href": "/locations"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Contact Us",
+        "href": "/contact-us"
+      }
+    ],
+    "ctaLabel": "Request Service"
+  },
+  "socialLinks": [
+    {
+      "platform": "Facebook",
+      "url": "https://facebook.com",
+      "enabled": false
+    },
+    {
+      "platform": "Instagram",
+      "url": "https://instagram.com",
+      "enabled": false
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com",
+      "enabled": false
+    },
+    {
+      "platform": "YouTube",
+      "url": "https://youtube.com",
+      "enabled": false
+    },
+    {
+      "platform": "Yelp",
+      "url": "https://yelp.com",
+      "enabled": false
+    },
+    {
+      "platform": "Google",
+      "url": "https://google.com",
+      "enabled": false
+    }
+  ],
+  "dynamicPages": {
+    "services": true,
+    "locations": false,
+    "testimonials": false
+  },
+  "home": {
+    "hero": {
+      "headline": "Your Trusted Vending Partner",
+      "body": "We deliver smart, reliable vending solutions for offices and public spaces, handling installation, restocking, and support so everything runs smoothly. Quality products, fast service, zero hassle.",
+      "ctaLabel": "Request Service",
+      "imageSrc": "/uploads/1773671753171-character.jpg"
+    },
+    "resultsIntro": {
+      "eyebrow": "Our Growth",
+      "heading": "Results",
+      "body": "Trusted by businesses across the Rio Grande Valley. Our numbers represent lasting partnerships and dependable vending service. From installation to ongoing support, we deliver quality products and reliable service every day."
+    },
+    "resultsStats": [
+      {
+        "headline": "Locations Served",
+        "target": 10,
+        "iconKey": "GoLocation",
+        "plus": true
+      },
+      {
+        "headline": "Snack & Drink Options",
+        "target": 75,
+        "iconKey": "GiVendingMachine",
+        "plus": true
+      },
+      {
+        "headline": "Restocking and Service",
+        "target": "Weekly-Biweekly",
+        "iconKey": "GrHostMaintenance"
+      }
+    ],
+    "servicesIntro": {
+      "eyebrow": "",
+      "heading": "Modern Vending Solutions",
+      "body": "From a single vending machine to a full refreshment program, we provide solutions tailored to your workplace. "
+    },
+    "locationsIntro": {
+      "eyebrow": "Where We Serve",
+      "heading": "Locations",
+      "body": "We provide vending solutions for various locations. Find the perfect fit for your space."
+    },
+    "testimonialsIntro": {
+      "eyebrow": "Our Happy Clients",
+      "heading": "Testimonials",
+      "body": "See what people are saying about their experience with us. "
+    },
+    "formIntro": {
+      "eyebrow": "Get Started",
+      "heading": "Request Service Today",
+      "body": "Fill out the form below and a member of our team will contact you within 24 hours during our regular business hours. "
+    }
+  },
+  "about": {
+    "eyebrow": "",
+    "heroImageSrc": "",
+    "headline": "Why Choose GMunchies Vending?",
+    "body": "At GMunchies Vending, our mission is simple: provide businesses across the Rio Grande Valley with modern, reliable vending solutions and snack options people actually enjoy. Proudly serving the 956 area, including McAllen, Mission, Edinburg, Pharr, and surrounding communities, we help workplaces upgrade their breakrooms with convenient and dependable vending services.\n\nWe offer a full range of solutions including snack, drink, and combo vending machines, office coffee service, and self-checkout micro markets designed to keep employees energized and customers satisfied throughout the day. Our machines feature modern technology such as cashless payment options, infrared delivery sensors, and remote monitoring systems that help ensure machines stay stocked, run smoothly, and provide a hassle-free experience.\n\nWhat truly sets GMunchies Vending apart is our commitment to service and product variety. Along with the most popular name-brand snacks and beverages, we proudly offer authentic Mexican products imported from Mexico. This gives businesses a unique vending selection that reflects the tastes and culture of the communities we serve.\n\nAt GMunchies Vending, we work closely with every business to customize vending options that best fit their location and needs. From small offices to large workplaces, our focus is simple: deliver dependable service, quality products, and a vending experience people can rely on every day.",
+    "imageSrc": "/uploads/1772925297305-icon_drink-vending-machines-01.jpg"
+  },
+  "servicesListingText": "All services from GMunchies Vending are professionally managed, ensuring a clean, reliable, and hassle-free experience. Our team closely monitors stock, provides regular service, and ensures everything runs smoothly so you always have convenient refreshment options available.",
+  "locationsListingText": "",
+  "services": [
+    {
+      "slug": "vending",
+      "display": true,
+      "eyebrow": "",
+      "iconSrc": "/uploads/new-icons_vending.svg",
+      "title": "Vending",
+      "excerpt": "Vending machines stocked with snacks and drinks for every taste. ",
+      "sectionsIntro": "",
+      "heroImageSrc": "/uploads/1771954203757-chatgpt-image-feb-24-2026-06_26_31-pm.png",
+      "blocks": [
+        {
+          "layout": "left",
+          "eyebrow": "",
+          "heading": "Snack Vending ",
+          "body": "Snack vending machines provide convenient access to a wide variety of snacks for employees, guests, and customers throughout the day. Our machines feature a mix of popular brands, healthier options, and customer favorites to satisfy different tastes. In addition to well known snacks, GMunchies Vending also offers authentic Mexican snacks imported from Mexico, giving your location a unique selection that reflects the community we proudly serve. ",
+          "iconSrc": "/uploads/1773440571987-services_snacks1.svg",
+          "imageSrc": "/uploads/1773102755126-chatgpt-image-mar-10-2026-01_30_53-am.png"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "",
+          "heading": "Drink Vending",
+          "body": "Drink vending machines offer quick and convenient access to refreshing beverages throughout the day. Our machines carry a variety of popular drinks including soft drinks, sparkling water, juices, sports drinks, and other customer favorites, making it easy for employees, guests, and customers to find the beverages they enjoy most. ",
+          "iconSrc": "/uploads/1773440571995-services_drinks2.svg",
+          "imageSrc": "/uploads/1773102334478-drinks.webp"
+        },
+        {
+          "layout": "center",
+          "eyebrow": "",
+          "heading": "Combo Vending",
+          "body": "Combo vending machines provide both snacks and beverages in one convenient machine. This space saving option is ideal for locations that want to offer a variety of refreshments without needing multiple machines. With a balanced selection of snacks and drinks in a single unit, combo machines provide flexibility and convenience for any workplace or public space. ",
+          "iconSrc": "/uploads/1773440571997-services_combo3.svg",
+          "imageSrc": "/uploads/1773103592883-combo-clean.webp"
+        }
+      ]
+    },
+    {
+      "slug": "coffee",
+      "display": true,
+      "eyebrow": "",
+      "iconSrc": "/uploads/new-icons_coffee.svg",
+      "title": "Coffee",
+      "excerpt": "Fresh, great-tasting coffee to help your team conquer the day. ",
+      "sectionsIntro": "",
+      "heroImageSrc": "/uploads/1771963231278-basically-coffee-0219-03-copy.webp",
+      "blocks": [
+        {
+          "layout": "right",
+          "eyebrow": "",
+          "heading": "Coffee Service",
+          "body": "Keep your workplace energized with reliable office coffee service from GMunchies Vending. We provide quality coffee selections and modern brewing machines designed to deliver a fresh, consistent cup throughout the workday. Whether your team enjoys bold, rich blends or smoother, lighter roasts, our coffee solutions make it easy to enjoy great coffee right at work. ",
+          "iconSrc": "",
+          "imageSrc": "/uploads/1772919504452-screenshot_3_aa.webp"
+        },
+        {
+          "layout": "left",
+          "eyebrow": "",
+          "heading": "Coffee Variety ",
+          "body": "Choose from a selection of flavorful coffee blends that satisfy a wide range of tastes across your workplace. ",
+          "iconSrc": "",
+          "imageSrc": "/uploads/1773426591018-gmunchies-vending-website-changes-pt.jpeg"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "",
+          "heading": "Modern Coffee Machines ",
+          "body": "Our easy-to-use coffee brewers are designed for office environments and deliver consistent quality in every cup. ",
+          "iconSrc": "",
+          "imageSrc": "/uploads/1773426591035-gmunchies-vending-website-changes-pt2.jpeg"
+        },
+        {
+          "layout": "left",
+          "eyebrow": "",
+          "heading": "Breakroom Essentials ",
+          "body": "We supply cups, stirrers, sweeteners, creamers, and other coffee necessities so your breakroom is always ready. ",
+          "iconSrc": "",
+          "imageSrc": "/uploads/1773426591038-gmunchies-vending-website-changes-3pt.jpeg"
+        }
+      ]
+    },
+    {
+      "slug": "micro-market",
+      "display": true,
+      "eyebrow": "",
+      "iconSrc": "/uploads/new-icons_micro.svg",
+      "title": "Micro Market",
+      "excerpt": " A self-checkout breakroom market with snacks and drinks your team will love. ",
+      "sectionsIntro": "",
+      "heroImageSrc": "/uploads/1773425130477-gmunchies-vending-website-changes-pt-copy.webp",
+      "blocks": [
+        {
+          "layout": "left",
+          "eyebrow": "",
+          "heading": "Micro Market Service ",
+          "body": "Upgrade your workplace breakroom with a modern micro market from GMunchies Vending. Our self-checkout markets provide employees with convenient access to a wide variety of snacks and drinks right inside your workplace. It’s a simple, flexible solution that offers more selection than traditional vending machines while making it easy for employees to grab what they need throughout the day. ",
+          "iconSrc": "",
+          "imageSrc": "/uploads/1772924437694-screenshot_5.jpg"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "",
+          "heading": "More Variety ",
+          "body": "Micro markets offer a larger selection of snacks and beverages than traditional vending machines, giving employees more choices to enjoy during their breaks. ",
+          "iconSrc": "",
+          "imageSrc": "/uploads/1773427007030-mdr.jpeg"
+        },
+        {
+          "layout": "left",
+          "eyebrow": "",
+          "heading": "Quick Self-Checkout ",
+          "body": "Employees can quickly grab their favorite items and check out using a simple, convenient self-checkout system designed for busy workplaces. ",
+          "iconSrc": "",
+          "imageSrc": "/uploads/1773426938135-quick-checkout.jpeg"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "",
+          "heading": "Modern Breakroom Upgrade ",
+          "body": "A micro market transforms your breakroom into a convenient refreshment space that employees can access anytime during the workday. ",
+          "iconSrc": "",
+          "imageSrc": "/uploads/1773427007040-modern-.jpeg"
+        }
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "slug": "office-building",
+      "eyebrow": "location",
+      "name": "Office Building",
+      "excerpt": "",
+      "description": "Perfect for corporate environments and business centers.",
+      "iconKey": "FaBuilding",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "left",
+          "eyebrow": "office friendly",
+          "heading": "Boost productivity with on-site refreshments",
+          "body": "Keep teams energized with snacks and drinks just steps away. We handle installation, restocking, and support so your breakroom stays ready every day.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "smart service",
+          "heading": "Reliable restocks and fast support",
+          "body": "Our routes and monitoring help reduce out-of-stocks. When you need help, we respond quickly so downtime stays minimal.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "appartment-complex",
+      "eyebrow": "location",
+      "name": "Appartment Complex",
+      "excerpt": "",
+      "description": "Convenient solutions for residential communities",
+      "iconKey": "FaHome",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "center",
+          "eyebrow": "resident convenience",
+          "heading": "Amenities that residents actually use",
+          "body": "Add a simple, high-value amenity that works 24/7. Great for lobbies, common areas, and fitness rooms.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "left",
+          "eyebrow": "clean setup",
+          "heading": "Professional installation and maintenance",
+          "body": "We install with minimal disruption and keep machines clean, stocked, and functioning properly.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "ware-house-industrial",
+      "eyebrow": "location",
+      "name": "Ware House/Industrial",
+      "excerpt": "",
+      "description": "Reliable vending for industrial and warehouse facilities",
+      "iconKey": "FaWarehouse",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "left",
+          "eyebrow": "built for shifts",
+          "heading": "Keep teams fueled during long shifts",
+          "body": "Fast access to snacks and drinks reduces breaks off-site and keeps operations moving.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "high usage",
+          "heading": "Stocked for peak demand",
+          "body": "We tailor product mix and service frequency to match your headcount and shift schedule.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "gym-fitness-center",
+      "eyebrow": "location",
+      "name": "Gym/Fitness-center",
+      "excerpt": "",
+      "description": "Healthy snacks and drinks for active members.",
+      "iconKey": "FaDumbbell",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "center",
+          "eyebrow": "fitness focused",
+          "heading": "Healthy options your members want",
+          "body": "Protein bars, electrolyte drinks, and better-for-you snacks—optimized for the gym environment.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "simple operations",
+          "heading": "We manage the details",
+          "body": "We keep inventory fresh, handle maintenance, and support cashless payments so it just works.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "hospital-healtcare",
+      "eyebrow": "location",
+      "name": "Hospital / Healtcare",
+      "excerpt": "",
+      "description": "24/7 refreshment options for staff and visitors",
+      "iconKey": "FaHospital",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "left",
+          "eyebrow": "always available",
+          "heading": "24/7 access for staff and visitors",
+          "body": "Healthcare never stops. We provide reliable vending solutions that support late-night staff and visiting families.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "right",
+          "eyebrow": "contactless",
+          "heading": "Fast, modern payments",
+          "body": "Tap-to-pay and mobile wallets reduce friction and speed up purchases in busy areas.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "school-university",
+      "eyebrow": "location",
+      "name": "School University",
+      "excerpt": "",
+      "description": "Campus-wide vending solutions for students and faculty",
+      "iconKey": "FaGraduationCap",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "center",
+          "eyebrow": "campus ready",
+          "heading": "Reliable vending for high-traffic areas",
+          "body": "From libraries to dorm common areas, we keep popular items available and machines running smoothly.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/cart1.png"
+        },
+        {
+          "layout": "left",
+          "eyebrow": "variety",
+          "heading": "Mix of classics and better options",
+          "body": "We balance top sellers with healthier items to match your campus preferences and guidelines.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/hero.webp"
+        }
+      ]
+    },
+    {
+      "slug": "other",
+      "eyebrow": "location",
+      "name": "Other",
+      "excerpt": "",
+      "description": "Custom solutions for your unique location",
+      "iconKey": "FaMapMarkerAlt",
+      "heroImageSrc": "/uploads/hero.webp",
+      "blocks": [
+        {
+          "layout": "center",
+          "eyebrow": "custom fit",
+          "heading": "Tailored to your space and needs",
+          "body": "Tell us about your location and we’ll recommend the right machines, product mix, and service frequency.",
+          "iconSrc": "",
+          "imageSrc": "/uploads/cart1.png"
+        }
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "t-office-1",
+      "locationSlug": "office-building",
+      "quote": "Installation was smooth and the machine looks great in our break area. Restocks are consistent and our team loves the snack selection.",
+      "clientName": "Operations Manager",
+      "locationLabel": "Office Building",
+      "enabled": true,
+      "showOnHome": true,
+      "showOnTestimonialsPage": true
+    },
+    {
+      "id": "t-warehouse-1",
+      "locationSlug": "ware-house-industrial",
+      "quote": "Our staff works long shifts, so having easy access to snacks and drinks makes a big difference. Service has been consistent. No complaints at all.",
+      "clientName": "Shift Supervisor",
+      "locationLabel": "Ware House/Industrial",
+      "enabled": true,
+      "showOnHome": true,
+      "showOnTestimonialsPage": true
+    },
+    {
+      "id": "t-gym-1",
+      "locationSlug": "gym-fitness-center",
+      "quote": "Members appreciate the healthier options and cold drinks. We’ve seen great usage and quick support when we needed help.",
+      "clientName": "Gym Owner",
+      "locationLabel": "Gym/Fitness-center",
+      "enabled": true,
+      "showOnHome": true,
+      "showOnTestimonialsPage": true
+    },
+    {
+      "id": "t-hospital-1",
+      "locationSlug": "hospital-healtcare",
+      "quote": "Great for visitors and staff. Machines are always stocked and payments are easy with tap-to-pay.",
+      "clientName": "Facilities Coordinator",
+      "locationLabel": "Hospital / Healtcare",
+      "enabled": true,
+      "showOnHome": true,
+      "showOnTestimonialsPage": true
+    },
+    {
+      "id": "t-school-1",
+      "locationSlug": "school-university",
+      "quote": "Students love the variety and the machines handle peak times well. Support is responsive and professional.",
+      "clientName": "Campus Admin",
+      "locationLabel": "School University",
+      "enabled": true,
+      "showOnHome": true,
+      "showOnTestimonialsPage": true
+    },
+    {
+      "id": "t-apartment-1",
+      "locationSlug": "appartment-complex",
+      "quote": "Residents enjoy the convenience. The setup was quick and the machines are kept clean and stocked.",
+      "clientName": "Property Manager",
+      "locationLabel": "Appartment Complex",
+      "enabled": true,
+      "showOnHome": true,
+      "showOnTestimonialsPage": true
+    },
+    {
+      "id": "t-other-1",
+      "locationSlug": "other",
+      "quote": "They tailored the setup to our space and needs. Great communication and reliable service.",
+      "clientName": "Site Manager",
+      "locationLabel": "Other",
+      "enabled": true,
+      "showOnHome": true,
+      "showOnTestimonialsPage": true
+    }
+  ]
+}

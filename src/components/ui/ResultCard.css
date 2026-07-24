@@ -1,0 +1,39 @@
+
+.rsHeadline{
+  text-align: center;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+}
+.rsCard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+
+  
+}
+.counter {
+  display: block;
+  font-size: 45px;
+  font-weight: 800;
+}
+.react-icon{
+  color: var(--primary-color);
+  width: 5rem;
+}
+
+@media (max-width: 1000px){
+  .rsCard{
+     min-width: 120px;
+  }
+    .counter{
+    font-size: 2rem;
+  }
+  .react-icon{
+    width: 4rem;
+  }
+  .cardHeadline{
+    font-size: 1.3rem;
+  }
+}
+

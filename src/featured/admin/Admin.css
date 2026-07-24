@@ -1,0 +1,745 @@
+.adminPage {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.adminShell {
+  min-height: 100vh;
+  display: flex;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.adminSidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 280px;
+  background: white;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  padding: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+  z-index: 20;
+}
+
+.adminSidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.adminSidebarNavItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--black);
+  text-align: left;
+}
+
+.adminSidebarNavItem:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.adminSidebarNavItem.active {
+  background: var(--secondary);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+.adminSidebarActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.adminSidebarAction {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-6);
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.adminSidebarFooter {
+  margin-top: auto;
+  padding-top: var(--space-8);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.adminMain {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  padding: var(--space-12) var(--space-10);
+}
+
+.adminMainInner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.adminMainTopActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.adminMainActionButton {
+  min-width: 120px;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.adminPageWithTopbar {
+  padding-top: calc(200px + var(--space-12));
+}
+
+.adminFixedTopbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: rgb(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-6);
+}
+
+.adminTopbarRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  width: 100%;
+}
+
+.adminTopbarRowBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  width: 100%;
+}
+
+.adminBackLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  text-decoration: none;
+  color: var(--black);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.adminModeSwitch {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: flex-start;
+}
+
+/* Toggle switch */
+.adminToggleField {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.adminToggleField label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--black);
+  opacity: 0.75;
+  margin-bottom: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.adminToggle {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.adminToggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.adminToggleTrack {
+  position: absolute;
+  inset: 0;
+  background: #d1d5db;
+  border-radius: 999px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.adminToggleTrack::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.adminToggle input:checked + .adminToggleTrack {
+  background: #22c55e;
+}
+
+.adminToggle input:checked + .adminToggleTrack::after {
+  transform: translateX(20px);
+}
+
+.adminToggle input:disabled + .adminToggleTrack {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.adminTopbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.adminActions {
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.adminButton {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.adminButtonPrimary {
+  background: var(--secondary);
+  border-color: rgba(0, 0, 0, 0.35);
+}
+
+.adminButtonSave {
+  background: var(--green-success);
+  border-color: rgba(0, 0, 0, 0.25);
+  color: white;
+}
+
+.adminButtonSave:hover {
+  filter: brightness(0.95);
+}
+
+.adminButtonDanger {
+  background: rgba(178, 31, 54, 0.08);
+  border-color: rgba(251, 201, 209, 0.45);
+  color: var(--primary-color);
+}
+
+.adminButtonDeleteEntity {
+  background: var(--primary-color);
+  border-color: rgba(0, 0, 0, 0.25);
+  color: white;
+}
+
+.adminButtonDeleteEntity:hover {
+  background: var(--primary-light);
+}
+
+.adminStatus {
+  white-space: pre-wrap;
+  opacity: 0.8;
+}
+
+.adminSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.adminCard {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  background: white;
+  overflow: hidden;
+}
+
+.adminCardHeader {
+  padding: var(--space-10);
+  display: flex;
+  gap: var(--space-8);
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #f3f3f3;
+  color: #111;
+}
+
+.adminCardHeader h3 {
+  margin: 0;
+}
+
+.adminCardHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.adminCardHeaderDelete {
+  padding: 10px 14px;
+}
+
+.adminCardBody {
+  padding: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  background: #fff;
+  color: #111;
+}
+
+.adminRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+}
+
+.adminField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.adminField label {
+  font-size: var(--paragraph-small);
+  opacity: 0.9;
+}
+
+.adminField input,
+.adminField textarea,
+.adminField select {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  background: #fff;
+  color: #111;
+}
+
+.adminField textarea {
+  min-height: 90px;
+}
+
+.adminRadioPill {
+  display: flex;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+  width: max-content;
+}
+
+/* Header variant of the On/Off pill (works on white header background) */
+.adminRadioPillHeader {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.adminRadioPillHeader .adminRadioPillOption span {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.78);
+  min-width: 72px;
+  padding: 9px 12px;
+}
+
+.adminRadioPillHeader .adminRadioPillOption input:checked + span {
+  background: var(--secondary);
+  color: var(--black);
+}
+
+.adminRadioPillOption {
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.adminRadioPillOption input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.adminRadioPillOption span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  color: black;
+  background: rgb(225, 225, 225);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.adminRadioPillOption input:checked + span {
+  background: var(--secondary);
+  border-color: transparent;
+  color: var(--black);
+}
+
+.adminRadioPillOption span:active {
+  transform: translateY(1px);
+}
+
+.blocksList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.blockItem {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.adminSubheading {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin: var(--space-8) 0 0 0;
+}
+
+.adminBlockHeader {
+  margin: 0 0 var(--space-6) 0;
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.adminBlockKicker {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 900;
+  opacity: 0.65;
+}
+
+.adminBlockTitle {
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.adminFieldSectionIcon {
+  margin-top: var(--space-16);
+  margin-bottom: var(--space-16);
+}
+
+.adminSettingsCard {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  background: white;
+  padding: var(--space-10);
+}
+
+.adminRadioRow {
+  display: flex;
+  gap: var(--space-10);
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: var(--space-6);
+}
+
+.adminRadio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-weight: 600;
+}
+
+.blockPreview {
+  display: flex;
+  gap: var(--space-8);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.blockPreview img {
+  width: 120px;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* New block media layout (icon + image side-by-side) */
+.adminMediaRow {
+  display: flex;
+  gap: var(--space-10);
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.adminMediaCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  flex: 0 0 280px;
+}
+
+.adminMediaColWide {
+  flex: 1 1 560px;
+  min-width: 360px;
+}
+
+.adminMediaPreview {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.adminMediaPreview img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.adminMediaPreviewIcon {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adminMediaPreviewIcon img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  background: transparent;
+}
+
+.adminMediaPreviewLarge {
+  /* no forced min-height; keep natural size */
+}
+
+.adminMediaEmpty {
+  padding: var(--space-10);
+  text-align: center;
+  opacity: 0.7;
+}
+
+.adminMediaControls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.adminMediaPath {
+  font-size: 12px;
+  opacity: 0.75;
+  word-break: break-word;
+}
+
+.adminMediaHint {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+@media (max-width: 820px) {
+  .adminMediaCol,
+  .adminMediaColWide {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  .adminMediaRow {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 820px) {
+  .adminFixedTopbar {
+    padding: var(--space-6);
+  }
+
+  .adminPageWithTopbar {
+    padding-top: calc(260px + var(--space-12));
+  }
+
+  .adminModeSwitch {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .adminTopbarRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .adminActions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .adminRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.adminModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--space-8);
+}
+
+.adminModal {
+  background: white;
+  border-radius: 16px;
+  width: min(100%, 1000px);
+  max-height: 80vh;
+  overflow: auto;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.adminModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-10);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.adminMediaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-8);
+  padding: var(--space-10);
+}
+
+.adminMediaItem {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
+  background: white;
+  padding: var(--space-6);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.adminMediaItem img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.adminMediaLabel {
+  font-size: 12px;
+  opacity: 0.75;
+  word-break: break-word;
+}
+
+.adminPopupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+}
+
+.adminPopup {
+  background: white;
+  border-radius: 16px;
+  width: min(100%, 720px);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+}
+
+.adminPopupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-10);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.adminPopupBody {
+  padding: var(--space-10);
+  white-space: pre-wrap;
+}
+
+.adminPopupClose {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+

@@ -1,0 +1,88 @@
+.locationSection {
+  background-color: rgb(244, 244, 244);
+  z-index: 3;
+}
+
+.locationContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.locationContainer .headingWrapper {
+  margin-bottom: var(--space-12);
+}
+
+.locationGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-10);
+  width: 100%;
+}
+
+.locationCardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.locationsListingText {
+  margin-top: var(--space-12);
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  opacity: 0.85;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.locationsListingText p {
+  margin: 0;
+}
+
+.locationGrid .centerCard {
+  grid-column: 2;
+}
+
+@media (max-width: 1200px) {
+  .locationGrid .centerCard {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: calc(50% - var(--space-8));
+    width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .locationGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 1000px) {
+  .locationGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+
+  .locationGrid .centerCard {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: calc(50% - var(--space-8));
+  }
+}
+
+@media (max-width: 768px) {
+  .locationGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .locationGrid .centerCard {
+    grid-column: 1;
+    max-width: 100%;
+  }
+}

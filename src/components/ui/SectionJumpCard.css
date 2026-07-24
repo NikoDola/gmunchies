@@ -1,0 +1,71 @@
+.sectionJumpCard {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  background: white;
+  cursor: pointer;
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+  border: none;
+  text-align: left;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.sectionJumpCard:hover {
+  transform: translateY(-1px);
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.sectionJumpIconWrap {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 14px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sectionJumpIcon {
+  object-fit: contain;
+}
+
+.sectionJumpText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.sectionJumpTitle {
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.2;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.sectionJumpHint {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.65;
+}
+
+@media (max-width: 1000px ){
+  .sectionJumpCard{
+    flex-direction: row;
+  }
+  .sectionJumpIconWrap{
+    width: 150px;
+  }
+  .sectionJumpTitle{
+    font-size: 2rem;
+  }
+  
+}
