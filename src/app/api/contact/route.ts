@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import nodemailer from "nodemailer";
-import { renderContactEmail, renderContactEmailText, type ContactEmailParams } from "@/lib/contactEmail";
+import {
+  renderConfirmationEmail,
+  renderConfirmationText,
+  renderNotificationEmail,
+  renderNotificationText,
+  type ContactEmailParams,
+} from "@/lib/contactEmail";
 
 export const runtime = "nodejs";
 
@@ -17,11 +23,12 @@ const contactSchema = z.object({
   source: z.enum(["request-service", "contact-us"]).optional().default("request-service"),
 });
 
-async function sendViaGmail(params: ContactEmailParams) {
+async function sendEmails(params: ContactEmailParams) {
   const user = process.env.GMAIL_USER;
-  const pass = process.env.GMAIL_APP_PASSWORD;
-  // Where inquiries land; defaults to the sending account itself.
-  const to = process.env.CONTACT_TO || user;
+  // App passwords are displayed with spaces (e.g. "abcd efgh ijkl mnop"); SMTP needs them stripped.
+  const pass = process.env.GMAIL_APP_PASSWORD?.replace(/\s+/g, "");
+  // Where the owner notification is delivered; defaults to the sending account.
+  const owner = process.env.CONTACT_TO || user;
 
   if (!user || !pass) {
     throw new Error("Email is not configured (missing GMAIL_USER / GMAIL_APP_PASSWORD on server)");
@@ -34,19 +41,33 @@ async function sendViaGmail(params: ContactEmailParams) {
     auth: { user, pass },
   });
 
-  const subject =
-    params.source === "contact-us"
-      ? `GMunchies: New contact-us inquiry from ${params.name}${params.lastName ? ` ${params.lastName}` : ""}`
-      : `GMunchies: New service request from ${params.name}`;
-
+  // 1) Confirmation back to the person who submitted the form (the main flow).
   await transporter.sendMail({
-    from: `"GMunchies Website" <${user}>`,
-    to,
-    replyTo: params.email,
-    subject,
-    text: renderContactEmailText(params),
-    html: renderContactEmail(params),
+    from: `"GMunchies Vending" <${user}>`,
+    to: params.email,
+    replyTo: owner,
+    subject: "Thanks for contacting GMunchies Vending",
+    text: renderConfirmationText(params),
+    html: renderConfirmationEmail(params),
   });
+
+  // 2) Notification to the owner so submissions are visible. Best-effort:
+  //    a failure here must not fail the user's confirmation.
+  try {
+    await transporter.sendMail({
+      from: `"GMunchies Website" <${user}>`,
+      to: owner,
+      replyTo: params.email,
+      subject:
+        params.source === "contact-us"
+          ? `GMunchies: New contact-us inquiry from ${params.name}${params.lastName ? ` ${params.lastName}` : ""}`
+          : `GMunchies: New service request from ${params.name}`,
+      text: renderNotificationText(params),
+      html: renderNotificationEmail(params),
+    });
+  } catch {
+    // ignore: the submitter already got their confirmation
+  }
 }
 
 export async function POST(req: Request) {
@@ -57,7 +78,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Validation error", issues: parsed.error.issues }, { status: 400 });
     }
 
-    await sendViaGmail(parsed.data);
+    await sendEmails(parsed.data);
 
     return NextResponse.json({ ok: true });
   } catch (e) {
